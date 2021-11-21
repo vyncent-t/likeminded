@@ -27,3 +27,7 @@ const eventSchema = new Schema({
         ref: 'Comments'
     }]
 })
+
+const Event = model('Event', eventSchema);
+
+module.exports = Event;

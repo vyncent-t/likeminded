@@ -27,3 +27,7 @@ const cliqueSchema = new Schema({
         ref: 'Event'
     }
 })
+
+const Clique = model('Clique', cliqueSchema);
+
+module.exports = Clique;
