@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+// const { Plans } = require('.');
 
 const planSchema = new Schema({
     plan_author: {
@@ -31,3 +32,7 @@ const planSchema = new Schema({
         ref: 'Comments'
     }]
 })
+
+const Plan = model('Plan', planSchema);
+
+module.exports = Plan;
