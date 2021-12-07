@@ -1,16 +1,16 @@
 const { Schema, model } = require('mongoose');
 
 const cliqueSchema = new Schema({
-    clique_author: {
+    cliqueAuthor: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    clique_name: {
+    cliqueName: {
         type: String,
         required: true,
         unique: true
     },
-    clique_members: [{
+    cliqueMembers: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
@@ -18,11 +18,11 @@ const cliqueSchema = new Schema({
         type: Date,
         required: true
     },
-    clique_about: {
+    cliqueAbout: {
         type: String,
         required: true
     },
-    clique_events: {
+    cliqueEvents: {
         type: Schema.Types.ObjectId,
         ref: 'Event'
     }
