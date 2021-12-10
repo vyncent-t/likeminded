@@ -1,22 +1,19 @@
-require('dotenv').config()
+require('dotenv').config({ path: require('./.env') })
 const express = require('express');
 //const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+
+const mongoose = require('mongoose');
 
 //const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
+const MONGOCONNECT = process.env.MONGOCONNECT
 const app = express();
 
 
-const mongodb = require('mongodb')
-const mongoClient = mongodb.MongoClient;
-const MONGOCONNECT = process.env.MONGOCONNECT
 
-
-// MAY NEED TO CHANGE PW AND USE ENV FOR STRING CONNECT
-const mongoConnect = require('./config/mongodbconnect')
 
 
 
@@ -50,8 +47,17 @@ app.use(express.json());
 
 // TEMP COMMENTING OUT UP
 
-mongoConnect(() => {
+mongoose.connect(
+  "mongodb+srv://mindrun:xnkl808@likeminded-arc.6s0rm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+).then(result => {
+  console.log(`CONNECTED MONGOOSE TO PORT ${PORT}`)
   app.listen(PORT)
-})
-
-
+}).catch(err => {
+  console.log(err)
+});
