@@ -16,11 +16,20 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        post: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Post'
-        }]
-
+        content_created: {
+            plan_id: [{
+                type: Schema.Types.ObjectId,
+                required: true
+            }],
+            event_id: [{
+                type: Schema.Types.ObjectId,
+                required: true
+            }],
+            comment_id: [{
+                type: Schema.Types.ObjectId,
+                required: true
+            }],
+        }
     }
 );
 
