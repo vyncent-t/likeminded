@@ -6,11 +6,11 @@ const router = express.Router()
 
 //GET METHOD
 // CONNECTS TO /admin/create-clique
-// router.get('/create-clique', adminControls.postAddClique)
+router.get('/create-clique', cliqueControls.findClique)
 
 //POST METHOD
 // CONNECTS TO /admin/create-clique
-router.post('/create-clique', cliqueControls.postAddClique);
+router.post('/create-clique', cliqueControls.postClique);
 
 
 module.exports = router;

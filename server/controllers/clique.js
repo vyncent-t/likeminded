@@ -2,7 +2,7 @@ const Clique = require('../models/Clique')
 
 // ref lecture 213
 // right side is from the actions of the req left side is from schema
-exports.postAddClique = (req, res, next) => {
+exports.postClique = (req, res, next) => {
     const clique_name = req.body.clique_name;
     const clique_about = req.body.clique_about;
     const clique = new Clique({
@@ -12,6 +12,16 @@ exports.postAddClique = (req, res, next) => {
     clique.save()
         .then(result => {
             console.log("Clique created")
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+exports.findClique = (req, res, next) => {
+    Clique.find()
+        .then(result => {
+            console.log("Clique found" + result)
         })
         .catch(err => {
             console.log(err)
