@@ -12,6 +12,7 @@ const PORT = process.env.PORT
 const MONGOCONNECT = process.env.MONGOCONNECT
 const app = express();
 
+const adminRoutes = require('./routes/admin')
 
 
 
@@ -26,6 +27,8 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use('/admin', adminRoutes)
 // app.use(express.static(path.join(__dirname + '../client/public')));
 
 // TEMP COMMENTING OUT
