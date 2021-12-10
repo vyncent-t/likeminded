@@ -9,7 +9,15 @@ const router = express.Router()
 router.get('/clique', cliqueControls.findAllClique)
 
 // CONNECTS TO /admin/clique-id
-router.get('/clique-id', cliqueControls.findClique)
+router.get('/clique-id', cliqueControls.findByIdClique)
+
+//PUT METHOD
+router.put('/clique-id', cliqueControls.editClique)
+
+//DELETE METHOD
+router.post('/clique-delete', cliqueControls.deleteClique)
+
+
 
 //POST METHOD
 // CONNECTS TO /admin/clique

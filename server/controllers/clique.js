@@ -28,11 +28,38 @@ exports.findAllClique = (req, res, next) => {
         })
 }
 
-exports.findClique = (req, res, next) => {
+exports.findByIdClique = (req, res, next) => {
     const clique_id = req.body.clique_id;
     Clique.findById(clique_id)
         .then(result => {
             console.log("Clique found" + result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+
+exports.editClique = (req, res, next) => {
+    const clique_id = req.body.clique_id;
+    const update_name = req.body.clique_name;
+    const update_about = req.body.clique_about;
+    Clique.findById(clique_id).then(clique => {
+        clique.clique_name = update_name
+        clique.clique_about = update_about
+        return clique.save()
+    }).then(result => {
+        console.log("Clique edited " + result)
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
+exports.deleteClique = (req, res, next) => {
+    const clique_id = req.body.clique_id;
+    Clique.findByIdAndRemove(clique_id)
+        .then(result => {
+            console.log("Clique deleted" + result)
         })
         .catch(err => {
             console.log(err)
