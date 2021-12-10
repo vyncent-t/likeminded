@@ -48,7 +48,7 @@ app.use(express.json());
 // TEMP COMMENTING OUT UP
 
 mongoose.connect(
-  "mongodb+srv://mindrun:xnkl808@likeminded-arc.6s0rm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  MONGOCONNECT,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -56,8 +56,9 @@ mongoose.connect(
     useFindAndModify: false,
   }
 ).then(result => {
-  console.log(`CONNECTED MONGOOSE TO PORT ${PORT}`)
   app.listen(PORT)
+  console.log(`CONNECTED MONGOOSE TO PORT ${PORT}`)
+  console.log(`${MONGOCONNECT}`)
 }).catch(err => {
   console.log(err)
 });
