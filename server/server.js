@@ -12,7 +12,7 @@ const PORT = process.env.PORT
 const MONGOCONNECT = process.env.MONGOCONNECT
 const app = express();
 
-const adminRoutes = require('./routes/admin')
+const adminRoutes = require('./routes/index')
 
 
 

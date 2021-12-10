@@ -1,6 +1,6 @@
 const express = require('express');
 
-const adminControls = require('../controllers/admin')
+const cliqueControls = require('../controllers/clique')
 
 const router = express.Router()
 
@@ -10,7 +10,7 @@ const router = express.Router()
 
 //POST METHOD
 // CONNECTS TO /admin/create-clique
-router.post('/create-clique', adminControls.postAddClique);
+router.post('/create-clique', cliqueControls.postAddClique);
 
 
 module.exports = router;
