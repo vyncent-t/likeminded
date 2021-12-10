@@ -1,4 +1,4 @@
-require('dotenv').config({ path: require('./.env') })
+require('dotenv').config()
 const express = require('express');
 //const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 //const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT
 const MONGOCONNECT = process.env.MONGOCONNECT
 const app = express();
 
