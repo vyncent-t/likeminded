@@ -50,9 +50,7 @@ app.use(express.json());
 
 // TEMP COMMENTING OUT UP
 
-mongoConnect(client => {
-  console.log("client print")
-  console.log(client)
+mongoConnect(() => {
   app.listen(PORT)
 })
 
