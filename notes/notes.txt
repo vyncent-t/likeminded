@@ -1,0 +1,3 @@
+$ eventually let the user save to calendar
+$ quick plan / randomizer
+$ impliment a way to see who all is going to the plan or event
