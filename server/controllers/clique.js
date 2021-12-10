@@ -18,8 +18,19 @@ exports.postClique = (req, res, next) => {
         })
 }
 
-exports.findClique = (req, res, next) => {
+exports.findAllClique = (req, res, next) => {
     Clique.find()
+        .then(result => {
+            console.log("Clique found" + result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+exports.findClique = (req, res, next) => {
+    const clique_id = req.body.clique_id;
+    Clique.findById(clique_id)
         .then(result => {
             console.log("Clique found" + result)
         })
