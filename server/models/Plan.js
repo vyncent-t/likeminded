@@ -4,20 +4,26 @@ const { Schema, model } = require('mongoose');
 const planSchema = new Schema({
     plan_author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
+    },
+    parent_event: {
+        type: Schema.Types.ObjectId,
+        ref: 'Event',
+        required: true
     },
     plan_name: {
         type: String,
         required: true,
         unique: true
     },
-    created: {
-        type: Date,
-        required: true
-    },
+    // created: {
+    //     type: Date,
+    //     required: true
+    // },
     total_votes: {
         type: Number,
-        required: true
+        // required: true
     },
     favored_by: [{
         type: Schema.Types.ObjectId,
