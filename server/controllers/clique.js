@@ -1,0 +1,69 @@
+const Clique = require('../models/Clique')
+
+// ref lecture 213
+// right side is from the actions of the req left side is from schema
+exports.postClique = (req, res, next) => {
+    const userId = req.body.userId
+    const clique_name = req.body.clique_name;
+    const clique_about = req.body.clique_about;
+    const clique = new Clique({
+        clique_name: clique_name,
+        clique_about: clique_about,
+        clique_author: userId
+    });
+    clique.save()
+        .then(result => {
+            console.log("Clique created")
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+exports.findAllClique = (req, res, next) => {
+    Clique.find()
+        .then(result => {
+            console.log("Clique found" + result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+exports.findByIdClique = (req, res, next) => {
+    const clique_id = req.body.clique_id;
+    Clique.findById(clique_id)
+        .then(result => {
+            console.log("Clique found" + result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+
+exports.editClique = (req, res, next) => {
+    const clique_id = req.body.clique_id;
+    const update_name = req.body.clique_name;
+    const update_about = req.body.clique_about;
+    Clique.findById(clique_id).then(clique => {
+        clique.clique_name = update_name
+        clique.clique_about = update_about
+        return clique.save()
+    }).then(result => {
+        console.log("Clique edited " + result)
+    }).catch(err => {
+        console.log(err)
+    })
+}
+
+exports.deleteClique = (req, res, next) => {
+    const clique_id = req.body.clique_id;
+    Clique.findByIdAndRemove(clique_id)
+        .then(result => {
+            console.log("Clique deleted" + result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}

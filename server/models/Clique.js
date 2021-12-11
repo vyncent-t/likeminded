@@ -3,22 +3,22 @@ const { Schema, model } = require('mongoose');
 const cliqueSchema = new Schema({
     cliqueAuthor: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     cliqueName: {
         type: String,
         required: true,
-        unique: true
     },
     cliqueMembers: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
-    created: {
-        type: Date,
-        required: true
-    },
-    cliqueAbout: {
+    // created: {
+    //     type: Date,
+    //     required: true
+    // },
+    clique_about: {
         type: String,
         required: true
     },
