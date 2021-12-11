@@ -16,19 +16,29 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        content_created: {
-            plan_id: [{
-                type: Schema.Types.ObjectId,
-                required: true
-            }],
-            event_id: [{
-                type: Schema.Types.ObjectId,
-                required: true
-            }],
-            comment_id: [{
-                type: Schema.Types.ObjectId,
-                required: true
-            }],
+        created_plan: {
+            plan_id: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Plan'
+                }
+            ]
+        },
+        created_event: {
+            event_id: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Event'
+                }
+            ]
+        },
+        created_comment: {
+            comment_id: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Comment'
+                }
+            ]
         }
     }
 );

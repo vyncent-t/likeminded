@@ -3,11 +3,13 @@ const Clique = require('../models/Clique')
 // ref lecture 213
 // right side is from the actions of the req left side is from schema
 exports.postClique = (req, res, next) => {
+    const userId = req.body.userId
     const clique_name = req.body.clique_name;
     const clique_about = req.body.clique_about;
     const clique = new Clique({
         clique_name: clique_name,
         clique_about: clique_about,
+        clique_author: userId
     });
     clique.save()
         .then(result => {

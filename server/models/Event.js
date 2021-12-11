@@ -8,12 +8,11 @@ const eventSchema = new Schema({
     event_name: {
         type: String,
         required: true,
-        unique: true
     },
-    created: {
-        type: Date,
-        required: true
-    },
+    // created: {
+    //     type: Date,
+    //     required: true
+    // },
     event_about: {
         type: String,
         required: true
