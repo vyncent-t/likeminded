@@ -1,5 +1,0 @@
-MONGOCONNECT = "mongodb+srv://mindrun:xnkl808@likeminded-arc.6s0rm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-
-MONGOCRED = mindrun:xnkl808
-
-`mongodb+srv://${MONGOCRED}@likeminded-arc.6s0rm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
