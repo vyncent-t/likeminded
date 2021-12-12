@@ -4,17 +4,20 @@ const dateFormat = require('../utils/dateFormat');
 const commentSchema = new Schema({
   comment_author: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
-  parent_content: {
+  plan_context: {
     type: Schema.Types.ObjectId,
     ref: 'Plan',
-    required: true
+  },
+  parent_context: {
+    type: Schema.Types.ObjectId,
+    ref: 'Plan',
   },
   comment_body: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   // createdAt: {
   //     type: Date,

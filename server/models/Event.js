@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose');
 const eventSchema = new Schema({
     event_author: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     event_name: {
         type: String,

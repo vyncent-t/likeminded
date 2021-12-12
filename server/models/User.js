@@ -16,11 +16,19 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        created_plan: {
-            plan_id: [
+        created_clique: {
+            clique_id: [
                 {
                     type: Schema.Types.ObjectId,
-                    ref: 'Plan'
+                    ref: 'Clique'
+                }
+            ]
+        },
+        member_of: {
+            clique_id: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Clique'
                 }
             ]
         },
@@ -29,6 +37,14 @@ const userSchema = new Schema(
                 {
                     type: Schema.Types.ObjectId,
                     ref: 'Event'
+                }
+            ]
+        },
+        created_plan: {
+            plan_id: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Plan'
                 }
             ]
         },
