@@ -1,5 +1,4 @@
-// const { Clique, Comment, Event, Plan, User } = require('../models/index')
-const { User, Clique } = require('../models/index')
+const { Clique, Comment, Event, Plan, User } = require('../models/index')
 
 const resolvers = {
     Query: {
@@ -15,6 +14,9 @@ const resolvers = {
     Mutation: {
         findUserById: async (parent, args) => {
             return await User.findById(args.id)
+        },
+        createNewUser: (parent, { username, email, password }) => {
+            return await User.create({ username, email, password })
         },
         updateUsername: async (parent, args) => {
             return await User.findOneAndUpdate({ _id: args.id }, { username: args.username }, { new: true })
@@ -56,6 +58,11 @@ const resolvers = {
 
 
         //              CLIQUES
+
+        // create new clique
+        createNewClique: (parent, { clique_author, clique_name, clique_about }) => {
+            return await Clique.create({ clique_author, clique_name, clique_about })
+        },
         // find clique by id
         findCliqueById: async (parent, args) => {
             return await Clique.findById(args.id)
@@ -78,6 +85,11 @@ const resolvers = {
         },
 
         //             EVENTS
+
+        // create new event
+        createNewEvent: (parent, { event_author, parent_clique, event_name, event_about }) => {
+            return await Event.create({ event_author, event_name, event_about })
+        },
         // find event by id
         findEventById: async (parent, args) => {
             return await Event.findById(args.id)
@@ -104,6 +116,11 @@ const resolvers = {
         },
 
         //             PLANS
+
+        // create new plan
+        createNewPlan: (parent, { plan_author, parent_event, plan_name, plan_about }) => {
+            return await Plan.create({ plan_author, parent_event, plan_name, plan_about })
+        },
         // find plan by id
         findPlanById: async (parent, args) => {
             return await Plan.findById(args.id)
@@ -130,6 +147,15 @@ const resolvers = {
         },
 
         //      COMMENTS
+
+        // find event comments by passing in event id
+        findEventComments: async (parent, args) => {
+            return await Comment.find({ event_context: args.id })
+        },
+        // find plan comments by passing in plan id
+        findPlanComments: async (parent, args) => {
+            return await Comment.find({ plan_context: args.id })
+        },
         // find comment by id
         findCommentById: async (parent, args) => {
             return await Comment.findById(args.id)
