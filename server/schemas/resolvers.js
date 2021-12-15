@@ -8,6 +8,15 @@ const resolvers = {
         findAllCliques: async () => {
             return await Clique.find({})
         },
+        findAllEvents: async () => {
+            return await Event.find({})
+        },
+        findAllPlans: async () => {
+            return await Plan.find({})
+        },
+        findAllComments: async () => {
+            return await Comment.find({})
+        },
 
     },
 
@@ -28,7 +37,7 @@ const resolvers = {
             return await User.findOneAndUpdate({ _id: args.id }, { password: args.password }, { new: true })
         },
         deleteUserById: async (parent, args) => {
-            return await User.findOneAndDelete(args.id)
+            return await User.findByIdAndDelete(args.id)
         },
 
 
@@ -67,6 +76,16 @@ const resolvers = {
         findCliqueById: async (parent, args) => {
             return await Clique.findById(args.id)
         },
+        // add member to clique
+        addCliqueMember: async (parent, { id, newUser }) => {
+            return await Clique.findByIdAndUpdate({ _id: id }, { $push: { clique_members: newUser } })
+        },
+
+        // remove member to clique
+        removeCliqueMember: async (parent, { id, targetUser }) => {
+            return await Clique.findByIdAndUpdate({ _id: id }, { $pull: { clique_members: targetUser } })
+        },
+
         // update the name of the clique by id
         updateCliqueName: async (parent, args) => {
             return await Clique.findOneAndUpdate({ _id: args.id }, { clique_name: args.cliqueName }, { new: true })
@@ -77,11 +96,11 @@ const resolvers = {
         },
         // delete clique by id
         deleteCliqueById: async (parent, args) => {
-            return await Clique.findOneAndDelete(args.id)
+            return await Clique.findByIdAndDelete(args.id)
         },
         // finds all the events under this clique
         findAllCliqueEvents: async (parent, args) => {
-            return await Event.find({ parent_clique: args.id })
+            return await Event.find({ parent_clique: args.id }).populate('User')
         },
 
         //             EVENTS
@@ -103,8 +122,8 @@ const resolvers = {
             return await Event.findOneAndUpdate({ _id: args.id }, { event_about: args.eventAbout }, { new: true })
         },
         // delete event by id
-        deleteEventById: async (parent, args) => {
-            return await Event.findOneAndDelete(args.id)
+        deleteEventById: async (parent, { id }) => {
+            return await Event.findByIdAndDelete(id)
         },
         // finds all the events under this Clique
         findAllCliqueEvents: async (parent, args) => {
@@ -135,7 +154,7 @@ const resolvers = {
         },
         // delete plan by id
         deletePlanById: async (parent, args) => {
-            return await Plan.findOneAndDelete(args.id)
+            return await Plan.findByIdAndDelete(args.id)
         },
         // finds all the comments under this plan
         findAllPlanComments: async (parent, args) => {
@@ -166,7 +185,7 @@ const resolvers = {
 
         // find event comments by passing in event id
         findEventComments: async (parent, args) => {
-            return await Comment.find({ event_context: args.id })
+            return await Comment.find({ event_context: args.id }).populate('Clique')
         },
         // find plan comments by passing in plan id
         findPlanComments: async (parent, args) => {
@@ -178,7 +197,7 @@ const resolvers = {
         },
         // delete comment by id
         deleteCommentById: async (parent, args) => {
-            return await Comment.findOneAndDelete(args.id)
+            return await Comment.findByIdAndDelete(args.id)
         },
 
     }

@@ -26,6 +26,7 @@ const typeDefs = gql`
     type Event {
         _id: ID
         event_author: User
+        parent_clique: Clique
         event_name: String
         event_about: String
         event_plans: [Plan]
@@ -77,6 +78,8 @@ const typeDefs = gql`
 
         findCliqueById(id: ID!): Clique
         createNewClique(clique_author: ID!, clique_name: String!, clique_about: String!): Clique
+        addCliqueMember(id: ID!, newUser: ID!): Clique
+        removeCliqueMember(id: ID!, targetUser: ID!): Clique
         updateCliqueName(id: ID!, cliqueName: String!): Clique
         updateCliqueAbout(id: ID!, cliqueAbout: String!): Clique
         deleteCliqueById(id: ID!): Clique

@@ -6,30 +6,26 @@ const eventSchema = new Schema({
         ref: 'User',
         required: true
     },
-    event_name: {
-        type: String,
-        required: true,
-    },
     parent_clique: {
         type: Schema.Types.ObjectId,
         ref: 'Clique',
         required: true
     },
-    // created: {
-    //     type: Date,
-    //     required: true
-    // },
+    event_name: {
+        type: String,
+        required: true,
+    },
     event_about: {
         type: String,
         required: true
     },
     event_plans: [{
         type: Schema.Types.ObjectId,
-        ref: 'Plans'
+        ref: 'Plan'
     }],
     event_comments: [{
         type: Schema.Types.ObjectId,
-        ref: 'Comments'
+        ref: 'Comment'
     }]
 })
 
