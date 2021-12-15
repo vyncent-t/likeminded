@@ -15,7 +15,7 @@ const resolvers = {
         findUserById: async (parent, args) => {
             return await User.findById(args.id)
         },
-        createNewUser: (parent, { username, email, password }) => {
+        createNewUser: async (parent, { username, email, password }) => {
             return await User.create({ username, email, password })
         },
         updateUsername: async (parent, args) => {
@@ -60,7 +60,7 @@ const resolvers = {
         //              CLIQUES
 
         // create new clique
-        createNewClique: (parent, { clique_author, clique_name, clique_about }) => {
+        createNewClique: async (parent, { clique_author, clique_name, clique_about }) => {
             return await Clique.create({ clique_author, clique_name, clique_about })
         },
         // find clique by id
@@ -87,8 +87,8 @@ const resolvers = {
         //             EVENTS
 
         // create new event
-        createNewEvent: (parent, { event_author, parent_clique, event_name, event_about }) => {
-            return await Event.create({ event_author, event_name, event_about })
+        createNewEvent: async (parent, { event_author, parent_clique, event_name, event_about }) => {
+            return await Event.create({ event_author, parent_clique, event_name, event_about })
         },
         // find event by id
         findEventById: async (parent, args) => {
@@ -118,7 +118,7 @@ const resolvers = {
         //             PLANS
 
         // create new plan
-        createNewPlan: (parent, { plan_author, parent_event, plan_name, plan_about }) => {
+        createNewPlan: async (parent, { plan_author, parent_event, plan_name, plan_about }) => {
             return await Plan.create({ plan_author, parent_event, plan_name, plan_about })
         },
         // find plan by id
@@ -147,6 +147,22 @@ const resolvers = {
         },
 
         //      COMMENTS
+
+        // create new plan comment
+        createPlanComment: async (parent, { comment_author, plan_context, comment_body }) => {
+            return await Comment.create({ comment_author, plan_context, comment_body })
+        },
+
+        // create new plan comment
+        createPlanComment: async (parent, { comment_author, plan_context, comment_body }) => {
+            return await Comment.create({ comment_author, plan_context, comment_body })
+        },
+
+        // create new event comment
+        createEventComment: async (parent, { comment_author, event_context, comment_body }) => {
+            return await Comment.create({ comment_author, event_context, comment_body })
+        },
+
 
         // find event comments by passing in event id
         findEventComments: async (parent, args) => {

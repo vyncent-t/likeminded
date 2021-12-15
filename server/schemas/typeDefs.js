@@ -66,7 +66,7 @@ const typeDefs = gql`
         updateUsername(id: ID!, username:String!): User
         updateUserEmail(id: ID!, email:String!): User
         updateUserPassword(id: ID!, password:String!): User
-        deleteUser(id: ID!): User
+        deleteUserById(id: ID!): User
 
         findUserCreatedCliques(id: ID!): [Clique]
         findUserCliqueMemberOf(id: ID!): [Clique]
