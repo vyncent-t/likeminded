@@ -91,14 +91,13 @@ const typeDefs = gql`
         updateEventAbout(id: ID!, eventAbout: String!): Event
         deleteEventById(id: ID!): Event
         findAllEventPlans(id: ID!): [Plan]
-        findAllEventComments(id: ID!): [Comment]
 
         findPlanById(id: ID!): Plan
         createNewPlan(plan_author: ID!, parent_event: ID!, plan_name: String!, plan_about: String!): Plan
         updatePlanName(id: ID!, planName: String!): Plan
         updatePlanAbout(id: ID!, planAbout: String!): Plan
         deletePlanById(id: ID!): Plan
-        findAllPlanComments(id: ID!): [Comment]
+
         findAllUsersInFavor(id: ID!): [User]
 
         createEventComment(comment_author: ID!, event_context: ID!, comment_body: String!): Comment

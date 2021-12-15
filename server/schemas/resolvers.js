@@ -130,8 +130,8 @@ const resolvers = {
             return await Event.find({ parent_clique: args.id })
         },
         // finds all the comments under this event
-        findAllEventComments: async (parent, args) => {
-            return await Comment.find({ event_context: args.id })
+        findAllEventPlans: async (parent, args) => {
+            return await Plan.find({ parent_event: args.id })
         },
 
         //             PLANS
@@ -155,10 +155,6 @@ const resolvers = {
         // delete plan by id
         deletePlanById: async (parent, args) => {
             return await Plan.findByIdAndDelete(args.id)
-        },
-        // finds all the comments under this plan
-        findAllPlanComments: async (parent, args) => {
-            return await Comment.find({ plan_context: args.id })
         },
         // find all in favor of this plan
         findAllUsersInFavor: async (parent, args) => {
@@ -185,7 +181,7 @@ const resolvers = {
 
         // find event comments by passing in event id
         findEventComments: async (parent, args) => {
-            return await Comment.find({ event_context: args.id }).populate('Clique')
+            return await Comment.find({ event_context: args.id })
         },
         // find plan comments by passing in plan id
         findPlanComments: async (parent, args) => {

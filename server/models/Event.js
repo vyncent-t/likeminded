@@ -19,14 +19,16 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
-    event_plans: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Plan'
-    }],
-    event_comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-    }]
+    // can just query for all plans whos parent_event is eventID
+    // event_plans: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Plan'
+    // }],
+    // can just query for all comments whos event_context is eventID
+    // event_comments: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Comment'
+    // }]
 })
 
 const Event = model('Event', eventSchema);
