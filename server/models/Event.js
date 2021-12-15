@@ -10,6 +10,11 @@ const eventSchema = new Schema({
         type: String,
         required: true,
     },
+    parent_clique: {
+        type: Schema.Types.ObjectId,
+        ref: 'Clique',
+        required: true
+    },
     // created: {
     //     type: Date,
     //     required: true

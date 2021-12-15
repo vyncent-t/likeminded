@@ -16,7 +16,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        created_clique: {
+        created_cliques: {
             clique_id: [
                 {
                     type: Schema.Types.ObjectId,
@@ -32,7 +32,7 @@ const userSchema = new Schema(
                 }
             ]
         },
-        created_event: {
+        created_events: {
             event_id: [
                 {
                     type: Schema.Types.ObjectId,
@@ -40,7 +40,7 @@ const userSchema = new Schema(
                 }
             ]
         },
-        created_plan: {
+        created_plans: {
             plan_id: [
                 {
                     type: Schema.Types.ObjectId,
@@ -48,7 +48,7 @@ const userSchema = new Schema(
                 }
             ]
         },
-        created_comment: {
+        created_comments: {
             comment_id: [
                 {
                     type: Schema.Types.ObjectId,
