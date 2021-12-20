@@ -8,6 +8,15 @@ const resolvers = {
         findAllCliques: async () => {
             return await Clique.find({})
         },
+        findAllEvents: async () => {
+            return await Event.find({})
+        },
+        findAllPlans: async () => {
+            return await Plan.find({})
+        },
+        findAllComments: async () => {
+            return await Comment.find({})
+        },
 
     },
 
@@ -15,7 +24,7 @@ const resolvers = {
         findUserById: async (parent, args) => {
             return await User.findById(args.id)
         },
-        createNewUser: (parent, { username, email, password }) => {
+        createNewUser: async (parent, { username, email, password }) => {
             return await User.create({ username, email, password })
         },
         updateUsername: async (parent, args) => {
@@ -28,7 +37,7 @@ const resolvers = {
             return await User.findOneAndUpdate({ _id: args.id }, { password: args.password }, { new: true })
         },
         deleteUserById: async (parent, args) => {
-            return await User.findOneAndDelete(args.id)
+            return await User.findByIdAndDelete(args.id)
         },
 
 
@@ -60,13 +69,23 @@ const resolvers = {
         //              CLIQUES
 
         // create new clique
-        createNewClique: (parent, { clique_author, clique_name, clique_about }) => {
+        createNewClique: async (parent, { clique_author, clique_name, clique_about }) => {
             return await Clique.create({ clique_author, clique_name, clique_about })
         },
         // find clique by id
         findCliqueById: async (parent, args) => {
             return await Clique.findById(args.id)
         },
+        // add member to clique
+        addCliqueMember: async (parent, { id, newUser }) => {
+            return await Clique.findByIdAndUpdate({ _id: id }, { $push: { clique_members: newUser } })
+        },
+
+        // remove member to clique
+        removeCliqueMember: async (parent, { id, targetUser }) => {
+            return await Clique.findByIdAndUpdate({ _id: id }, { $pull: { clique_members: targetUser } })
+        },
+
         // update the name of the clique by id
         updateCliqueName: async (parent, args) => {
             return await Clique.findOneAndUpdate({ _id: args.id }, { clique_name: args.cliqueName }, { new: true })
@@ -77,18 +96,18 @@ const resolvers = {
         },
         // delete clique by id
         deleteCliqueById: async (parent, args) => {
-            return await Clique.findOneAndDelete(args.id)
+            return await Clique.findByIdAndDelete(args.id)
         },
         // finds all the events under this clique
         findAllCliqueEvents: async (parent, args) => {
-            return await Event.find({ parent_clique: args.id })
+            return await Event.find({ parent_clique: args.id }).populate('User')
         },
 
         //             EVENTS
 
         // create new event
-        createNewEvent: (parent, { event_author, parent_clique, event_name, event_about }) => {
-            return await Event.create({ event_author, event_name, event_about })
+        createNewEvent: async (parent, { event_author, parent_clique, event_name, event_about }) => {
+            return await Event.create({ event_author, parent_clique, event_name, event_about })
         },
         // find event by id
         findEventById: async (parent, args) => {
@@ -103,22 +122,22 @@ const resolvers = {
             return await Event.findOneAndUpdate({ _id: args.id }, { event_about: args.eventAbout }, { new: true })
         },
         // delete event by id
-        deleteEventById: async (parent, args) => {
-            return await Event.findOneAndDelete(args.id)
+        deleteEventById: async (parent, { id }) => {
+            return await Event.findByIdAndDelete(id)
         },
         // finds all the events under this Clique
         findAllCliqueEvents: async (parent, args) => {
             return await Event.find({ parent_clique: args.id })
         },
         // finds all the comments under this event
-        findAllEventComments: async (parent, args) => {
-            return await Comment.find({ event_context: args.id })
+        findAllEventPlans: async (parent, args) => {
+            return await Plan.find({ parent_event: args.id })
         },
 
         //             PLANS
 
         // create new plan
-        createNewPlan: (parent, { plan_author, parent_event, plan_name, plan_about }) => {
+        createNewPlan: async (parent, { plan_author, parent_event, plan_name, plan_about }) => {
             return await Plan.create({ plan_author, parent_event, plan_name, plan_about })
         },
         // find plan by id
@@ -135,11 +154,7 @@ const resolvers = {
         },
         // delete plan by id
         deletePlanById: async (parent, args) => {
-            return await Plan.findOneAndDelete(args.id)
-        },
-        // finds all the comments under this plan
-        findAllPlanComments: async (parent, args) => {
-            return await Comment.find({ plan_context: args.id })
+            return await Plan.findByIdAndDelete(args.id)
         },
         // find all in favor of this plan
         findAllUsersInFavor: async (parent, args) => {
@@ -147,6 +162,22 @@ const resolvers = {
         },
 
         //      COMMENTS
+
+        // create new plan comment
+        createPlanComment: async (parent, { comment_author, plan_context, comment_body }) => {
+            return await Comment.create({ comment_author, plan_context, comment_body })
+        },
+
+        // create new plan comment
+        createPlanComment: async (parent, { comment_author, plan_context, comment_body }) => {
+            return await Comment.create({ comment_author, plan_context, comment_body })
+        },
+
+        // create new event comment
+        createEventComment: async (parent, { comment_author, event_context, comment_body }) => {
+            return await Comment.create({ comment_author, event_context, comment_body })
+        },
+
 
         // find event comments by passing in event id
         findEventComments: async (parent, args) => {
@@ -162,7 +193,7 @@ const resolvers = {
         },
         // delete comment by id
         deleteCommentById: async (parent, args) => {
-            return await Comment.findOneAndDelete(args.id)
+            return await Comment.findByIdAndDelete(args.id)
         },
 
     }
