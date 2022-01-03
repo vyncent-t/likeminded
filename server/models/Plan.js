@@ -33,10 +33,12 @@ const planSchema = new Schema({
         type: String,
         required: true
     },
-    plan_comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Comments'
-    }]
+
+    // can just query for all comments whos plan_conext is planID
+    // plan_comments: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Comments'
+    // }]
 })
 
 const Plan = model('Plan', planSchema);

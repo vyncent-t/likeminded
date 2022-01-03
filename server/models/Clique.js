@@ -22,10 +22,11 @@ const cliqueSchema = new Schema({
         type: String,
         required: true
     },
-    cliqueEvents: {
-        type: Schema.Types.ObjectId,
-        ref: 'Event'
-    }
+    // can just query for all events who parent_clique is cliqueID
+    // clique_events: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Event'
+    // }
 })
 
 const Clique = model('Clique', cliqueSchema);

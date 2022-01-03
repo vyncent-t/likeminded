@@ -16,15 +16,23 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        created_plan: {
-            plan_id: [
+        created_cliques: {
+            clique_id: [
                 {
                     type: Schema.Types.ObjectId,
-                    ref: 'Plan'
+                    ref: 'Clique'
                 }
             ]
         },
-        created_event: {
+        member_of: {
+            clique_id: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Clique'
+                }
+            ]
+        },
+        created_events: {
             event_id: [
                 {
                     type: Schema.Types.ObjectId,
@@ -32,7 +40,15 @@ const userSchema = new Schema(
                 }
             ]
         },
-        created_comment: {
+        created_plans: {
+            plan_id: [
+                {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Plan'
+                }
+            ]
+        },
+        created_comments: {
             comment_id: [
                 {
                     type: Schema.Types.ObjectId,

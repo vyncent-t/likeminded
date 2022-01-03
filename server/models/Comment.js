@@ -1,27 +1,23 @@
 const { Schema, model } = require('mongoose');
-const dateFormat = require('../utils/dateFormat');
 
 const commentSchema = new Schema({
   comment_author: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
-  parent_content: {
+  plan_context: {
     type: Schema.Types.ObjectId,
     ref: 'Plan',
-    required: true
+  },
+  event_context: {
+    type: Schema.Types.ObjectId,
+    ref: 'Event',
   },
   comment_body: {
     type: String,
-    required: true,
-    unique: true
-  },
-  // createdAt: {
-  //     type: Date,
-  //     default: Date.now,
-  //     get: (timestamp) => dateFormat(timestamp),
-  //     required: true
-  // }
+    required: true
+  }
 })
 
 const Comment = model('Comment', commentSchema);
