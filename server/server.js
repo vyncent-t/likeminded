@@ -13,13 +13,9 @@ const app = express();
 
 // const adminRoutes = require('./routes/index')
 
-
-//comment so i can try to commit and merge
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-
 });
 
 server.applyMiddleware({ app });
