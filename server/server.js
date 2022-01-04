@@ -13,11 +13,9 @@ const app = express();
 
 // const adminRoutes = require('./routes/index')
 
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-
 });
 
 server.applyMiddleware({ app });
