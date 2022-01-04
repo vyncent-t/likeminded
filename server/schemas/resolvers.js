@@ -1,5 +1,7 @@
 const { Clique, Comment, Event, Plan, User } = require('../models/index')
 
+// x
+
 const resolvers = {
     Query: {
         findAllUsers: async () => {
