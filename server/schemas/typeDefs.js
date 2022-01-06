@@ -78,8 +78,6 @@ const typeDefs = gql`
         findCommentById(id: ID!): Comment
         findEventComments(id: ID!): [Comment]
         findPlanComments(id: ID!): [Comment]
-
-
     }
 
     type Mutation {
