@@ -55,44 +55,50 @@ const typeDefs = gql`
 
     type Query {
         findAllUsers: [User]
-        findAllCliques: [Clique]
-        findAllEvents: [Event]
-        findAllPlans: [Plan]
-        findAllComments: [Comment]
-    }
-
-    type Mutation {
         findUserById(id: ID!): User
-        createNewUser(username: String!, email: String!, password: String!): User
-        updateUsername(id: ID!, username:String!): User
-        updateUserEmail(id: ID!, email:String!): User
-        updateUserPassword(id: ID!, password:String!): User
-        deleteUserById(id: ID!): User
-
         findUserCreatedCliques(id: ID!): [Clique]
         findUserCliqueMemberOf(id: ID!): [Clique]
         findUserCreatedEvents(id: ID!): [Event]
         findUserCreatedPlans(id: ID!): [Plan]
         findUserCreatedComments(id: ID!): [Comment]
 
-
+        findAllCliques: [Clique]
         findCliqueById(id: ID!): Clique
+
+        findAllEvents: [Event]
+        findEventById(id: ID!): Event
+        findAllCliqueEvents(id: ID!): [Event]
+
+        findAllPlans: [Plan]
+        findPlanById(id: ID!): Plan
+        findAllEventPlans(id: ID!): [Plan]
+
+
+        findAllComments: [Comment]
+        findCommentById(id: ID!): Comment
+        findEventComments(id: ID!): [Comment]
+        findPlanComments(id: ID!): [Comment]
+    }
+
+    type Mutation {
+        createNewUser(username: String!, email: String!, password: String!): User
+        updateUsername(id: ID!, username:String!): User
+        updateUserEmail(id: ID!, email:String!): User
+        updateUserPassword(id: ID!, password:String!): User
+        deleteUserById(id: ID!): User
+
         createNewClique(clique_author: ID!, clique_name: String!, clique_about: String!): Clique
         addCliqueMember(id: ID!, newUser: ID!): Clique
         removeCliqueMember(id: ID!, targetUser: ID!): Clique
         updateCliqueName(id: ID!, cliqueName: String!): Clique
         updateCliqueAbout(id: ID!, cliqueAbout: String!): Clique
         deleteCliqueById(id: ID!): Clique
-        findAllCliqueEvents(id: ID!): [Event]
 
-        findEventById(id: ID!): Event
         createNewEvent(event_author: ID!, parent_clique: ID!, event_name: String!, event_about: String!): Event
         updateEventName(id: ID!, eventName: String!): Event
         updateEventAbout(id: ID!, eventAbout: String!): Event
         deleteEventById(id: ID!): Event
-        findAllEventPlans(id: ID!): [Plan]
 
-        findPlanById(id: ID!): Plan
         createNewPlan(plan_author: ID!, parent_event: ID!, plan_name: String!, plan_about: String!): Plan
         updatePlanName(id: ID!, planName: String!): Plan
         updatePlanAbout(id: ID!, planAbout: String!): Plan
@@ -102,9 +108,6 @@ const typeDefs = gql`
 
         createEventComment(comment_author: ID!, event_context: ID!, comment_body: String!): Comment
         createPlanComment(comment_author: ID!, plan_context: ID!, comment_body: String!): Comment
-        findEventComments(id: ID!): [Comment]
-        findPlanComments(id: ID!): [Comment]
-        findCommentById(id: ID!): Comment
         deleteCommentById(id: ID!): Comment
 
     }
