@@ -7,6 +7,7 @@ function Samplepage() {
   const { loading, data } = useQuery(FIND_ALL_EMAILS);
   console.log("data " + data)
 
+  // look up
   const emails = data?.findAllUsers || [];
 
   return (
