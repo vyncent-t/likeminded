@@ -104,7 +104,7 @@ const typeDefs = gql`
         updatePlanAbout(id: ID!, planAbout: String!): Plan
         deletePlanById(id: ID!): Plan
 
-        findAllUsersInFavor(id: ID!): [User]
+        # findAllUsersInFavor(id: ID!): [User]
 
         createEventComment(comment_author: ID!, event_context: ID!, comment_body: String!): Comment
         createPlanComment(comment_author: ID!, plan_context: ID!, comment_body: String!): Comment
