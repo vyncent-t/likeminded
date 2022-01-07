@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 mongoose.connect(
-    process.env.MONGOCONNECT,
+    "mongodb+srv://mindrun:xnkl808@likeminded-arc.6s0rm.mongodb.net/likemindedDB?retryWrites=true&w=majority",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
