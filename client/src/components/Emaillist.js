@@ -1,22 +1,24 @@
 import React from 'react';
 
-const Emaillist = ({ emails, username }) => {
-  if (!emails) {
-    return <><h3>No Emails Yet</h3></>;
+const Emaillist = ({ emails }) => {
+  if (!emails.length) {
+    return <div><h3>No Emails Yet</h3></div>;
   }
+
+  console.log("email" + emails.email)
 
   return (
     <div>
-      <h3 className="text-primary">{username}</h3>
-      <div className="flex-row justify-space-between my-4">
+      <h3>Emails</h3>
+      <div>
         {emails &&
           emails.map((email) => (
-            <div key={emails._id} className="col-12 col-xl-6">
-              <div className="card mb-3">
-                <h4 className="card-header bg-dark text-light p-2 m-0">
-                  {emails.username} <br />
+            <div key={email._id}>
+              <div >
+                <h4 >
+                  {email.username} <br />
                   <span>
-                      {emails.email}
+                    {email.email}
                   </span>
                 </h4>
               </div>

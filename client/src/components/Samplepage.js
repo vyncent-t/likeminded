@@ -1,17 +1,19 @@
-import Emaillist from'./Emaillist';
+import Emaillist from './Emaillist';
 import { useQuery } from '@apollo/client';
 import { FIND_ALL_EMAILS } from '../utils/queries';
 
 function Samplepage() {
 
-  const {loading,data} = useQuery(FIND_ALL_EMAILS);
-  const emails = data;
+  const { loading, data } = useQuery(FIND_ALL_EMAILS);
+  console.log("data " + data)
+
+  const emails = data?.findAllUsers || [];
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div >
+      <header >
         <div>
-          {loading ? (<div>loading..</div>) : (<Emaillist emails = {emails} />)}
+          {loading ? (<div>loading..</div>) : (<Emaillist emails={emails} />)}
         </div>
 
       </header>
