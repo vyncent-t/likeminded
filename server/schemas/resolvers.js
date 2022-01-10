@@ -4,7 +4,7 @@ const { Clique, Comment, Event, Plan, User } = require('../models/index')
 
 const resolvers = {
     Query: {
-        /*-----USER QUERY----*/
+        /*---------------------------------------------------USER QUERY-------------------------------------------------*/
         findAllUsers: async () => {
             return await User.find({})
         },
@@ -32,7 +32,7 @@ const resolvers = {
             return await Comment.find({ comment_author: args.id })
         },
 
-        /*----- CLIQUE QUERY -----*/
+        /*---------------------------------------------- CLIQUE QUERY ---------------------------------------------------------*/
         findAllCliques: async () => {
             return await Clique.find({})
         },
@@ -42,7 +42,7 @@ const resolvers = {
         },
 
 
-        /*----- EVENT QUERY -----*/
+        /*-------------------------------------------------- EVENT QUERY ------------------------------------------------*/
         findAllEvents: async () => {
             return await Event.find({})
         },
@@ -56,7 +56,7 @@ const resolvers = {
         },
 
 
-        /*----- PLAN QUERY -----*/
+        /*----------------------------------------------------- PLAN QUERY -------------------------------------------------*/
         findAllPlans: async () => {
             return await Plan.find({})
         },
@@ -70,7 +70,7 @@ const resolvers = {
         },
 
 
-        /*----- COMMENT QUERY -----*/
+        /*----------------------------------------------------- COMMENT QUERY ----------------------------------------------*/
         findAllComments: async () => {
             return await Comment.find({})
         },
@@ -87,23 +87,10 @@ const resolvers = {
             return await Comment.find({ plan_context: args.id })
         },
 
-
-
-        // find all in favor of this plan
-        findAllUsersInFavor: async (parent, args) => {
-            return await plan.find({ id: args.id }, { favored_by })
-        },
-
-        // // finds all the events under this clique
-        // findAllCliqueEvents: async (parent, args) => {
-        //     return await Event.find({ parent_clique: args.id }).populate('User')
-        // },
-
-
     },
 
     Mutation: {
-        /*----- USER MUTATION -----*/
+        /*-------------------------------------------------- USER MUTATION ----------------------------------------------*/
         createNewUser: async (parent, { username, email, password }) => {
             return await User.create({ username, email, password })
         },
@@ -120,7 +107,7 @@ const resolvers = {
             return await User.findByIdAndDelete(args.id)
         },
 
-        /*----- CLIQUE MUTATION -----*/
+        /*----------------------------------------------------- CLIQUE MUTATION ------------------------------------------------*/
 
         // create new clique
         createNewClique: async (parent, { clique_author, clique_name, clique_about }) => {
@@ -147,7 +134,7 @@ const resolvers = {
             return await Clique.findByIdAndDelete(args.id)
         },
 
-        /*----- EVENT MUTATION -----*/
+        /*-------------------------------------------------------------- EVENT MUTATION ---------------------------------------*/
 
         // create new event
         createNewEvent: async (parent, { event_author, parent_clique, event_name, event_about }) => {
@@ -166,7 +153,7 @@ const resolvers = {
             return await Event.findByIdAndDelete(id)
         },
 
-        /*----- PLAN MUTATION -----*/
+        /*--------------------------------------------------------------------- PLAN MUTATION ------------------------------------------------*/
 
         // create new plan
         createNewPlan: async (parent, { plan_author, parent_event, plan_name, plan_about }) => {
@@ -185,7 +172,7 @@ const resolvers = {
             return await Plan.findByIdAndDelete(args.id)
         },
 
-        /*----- COMMENT MUTATION -----*/
+        /*----------------------------------------------------------------- COMMENT MUTATION ------------------------------------*/
         // create new event comment
         createEventComment: async (parent, { comment_author, event_context, comment_body }) => {
             return await Comment.create({ comment_author, event_context, comment_body })
