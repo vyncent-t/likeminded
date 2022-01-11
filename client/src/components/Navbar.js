@@ -1,20 +1,20 @@
-
+import { NavLink } from "react-router-dom"
 
 function Navbar() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="http://localhost:3000/#">Likeminded</a>
+                    <NavLink className="navbar-brand" to="/">Likeminded</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarColor01">
                         <ul className="navbar-nav me-auto">
                             <li className="nav-item">
-                                <a className="nav-link active" href="http://localhost:3000/#">Home
+                                <NavLink className="nav-link" to="/">Home
                                     <span className="visually-hidden">(current)</span>
-                                </a>
+                                </NavLink>
                             </li>
                             {/* <li className="nav-item">
                                 <a className="nav-link active" href="#">Home
@@ -29,10 +29,10 @@ function Navbar() {
                             </li>
  */}
                             <li className="nav-item">
-                                <a className="nav-link" href="http://localhost:3000/#">About</a>
+                                <NavLink className="nav-link" to="/about">About</NavLink>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="http://localhost:3000/#">Login / Sign up</a>
+                                <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
                             </li>
                             {/* <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="http://localhost:3000/#" role="button" aria-haspopup="true" aria-expanded="true">Login / Sign up</a>

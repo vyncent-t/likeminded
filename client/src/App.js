@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import LandingPage from './pages/landingpage';
+import { Route, Routes } from 'react-router-dom'
+import LandingPage from './pages/landingpage'
 import CreateLogInPage from './pages/createLogInPage';
+import Navbar from './components/Navbar';
 
 
 const client = new ApolloClient({
@@ -9,12 +11,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+// import {BrowserRouter} on index.js file then wrap <App/> in <BrowserRouter/>
+
+// replaces the switch route method of old
+
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div>
-        <CreateLogInPage />
-      </div>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/welcome" element={<CreateLogInPage />} />
+      </Routes>
     </ApolloProvider>
   );
 }

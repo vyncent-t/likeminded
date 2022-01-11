@@ -3,7 +3,7 @@ import Samplepage from "../components/Samplepage";
 import UserSignUp from "../components/userSignUp";
 import UserLogIn from "../components/userLogIn";
 
-const { default: Navbar } = require("../components/Navbar");
+import Navbar from "../components/Navbar";
 
 
 function CreateLogInPage() {
