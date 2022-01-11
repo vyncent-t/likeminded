@@ -1,7 +1,6 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-
-import Samplepage from './components/Samplepage';
+import LandingPage from './pages/landingpage';
 
 
 const client = new ApolloClient({
@@ -12,10 +11,8 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <div className="container">
-          <Samplepage></Samplepage>
-        </div>
+      <div>
+        <LandingPage />
       </div>
     </ApolloProvider>
   );
