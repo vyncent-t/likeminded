@@ -12,35 +12,45 @@ function UserLogIn() {
                             <h3>Sign In</h3>
                             <p className="mb-4">Welcome to Likeminded, come connect with your cliques.</p>
                         </div>
-                        <form action="#" method="post">
-                            <div className="form-group first">
-                                <label for="username">Username</label>
-                                <input type="text" className="form-control" id="username" />
+                        <form className="flex-row justify-center justify-space-between-md" >
+                            {/* <div className="form-group row m-2 justify-content-around">
+                                <div>
+                                    <label className="col-sm-2 col-form-label">Email</label>
+                                    <div className="col-sm-10">
+                                        <input name="email" type="email" className="form-control" placeholder="Email" />
+                                    </div>
+                                </div>
+                            </div> */}
+
+                            <div className="form-group row m-2">
+                                <div>
+                                    <label className="col-sm-2 col-form-label">Username</label>
+                                    <div className="col-sm-10">
+                                        <input name="username" type="text" className="form-control" placeholder="Username" />
+                                    </div>
+                                </div>
                             </div>
-                            <div className="form-group last mb-4">
-                                <label for="password">Password</label>
-                                <input type="password" className="form-control" id="password" />
+
+                            <div className="form-group row m-2">
+                                <div>
+                                    <label className="col-sm-2 col-form-label">Password</label>
+                                    <div className="col-sm-10">
+                                        <input name="password" type="password" className="form-control" placeholder="Password" />
+                                    </div>
+                                </div>
                             </div>
-                            <div className="d-flex mb-5 align-items-center">
-                                <label className="control control--checkbox mb-0"><span className="caption">Remember me</span>
-                                    <input type="checkbox" checked="" />
-                                    <div className="control__indicator"></div>
-                                </label>
-                                <span className="ml-auto"><a href="http://localhost:3000/#" className="forgot-pass">Forgot Password</a></span>
+
+                            <div className="form-group row m-2 mt-3">
+                                <div className="col-sm-10">
+                                    <button type="submit" className="btn btn-primary">Log in</button>
+                                </div>
+
+                                {/* {error && (
+                                    <div className="col-12 my-3 bg-danger text-white p-3">
+                                        Something went wrong...
+                                    </div>
+                                )} */}
                             </div>
-                            <input type="submit" value="Log In" className="btn btn-block btn-primary" />
-                            <span className="d-block text-left my-4 text-muted">— or login with —</span>
-                            {/* <div className="social-login">
-                                    <a href="#" className="facebook">
-                                        <span className="icon-facebook mr-3"></span>
-                                    </a>
-                                    <a href="#" className="twitter">
-                                        <span className="icon-twitter mr-3"></span>
-                                    </a>
-                                    <a href="#" className="google">
-                                        <span className="icon-google mr-3"></span>
-                                    </a>
-                                </div> */}
                         </form>
                     </div>
                 </div>
