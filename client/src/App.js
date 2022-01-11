@@ -1,6 +1,7 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import LandingPage from './pages/landingpage';
+import CreateLogInPage from './pages/createLogInPage';
 
 
 const client = new ApolloClient({
@@ -12,7 +13,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div>
-        <LandingPage />
+        <CreateLogInPage />
       </div>
     </ApolloProvider>
   );

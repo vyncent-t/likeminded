@@ -12,12 +12,9 @@ function Samplepage() {
 
   return (
     <div >
-      <header >
-        <div>
-          {loading ? (<div>loading..</div>) : (<Emaillist emails={emails} />)}
-        </div>
-
-      </header>
+      <div>
+        {loading ? (<div>loading..</div>) : (<Emaillist emails={emails} />)}
+      </div>
     </div>
   );
 }

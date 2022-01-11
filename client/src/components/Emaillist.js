@@ -16,9 +16,9 @@ const Emaillist = ({ emails }) => {
             <div key={email._id}>
               <div >
                 <h4 >
-                  {email.username} <br />
+                  username: {email.username} <br />
                   <span>
-                    {email.email}
+                    email: {email.email}
                   </span>
                 </h4>
               </div>

@@ -25,7 +25,7 @@ function LandingPage() {
                                 Sign up today <i className="bi bi-person-check"></i>
                             </a>
                         </div>
-                        <img className="img-fluid img-thumbnail m-3 d-sm-block bg-light rounded"
+                        <img className="img-fluid img-thumbnail m-3 w-50 d-sm-block bg-light rounded"
                             src={logoDev} alt="" />
                     </div>
                 </div>
@@ -41,7 +41,7 @@ function LandingPage() {
                                 ever- just send the invite and start planning!
                             </p>
                         </div>
-                        <img className="img-fluid img-thumbnail m-3 d-sm-block bg-light rounded-cricle"
+                        <img className="img-fluid img-thumbnail m-3 w-50 d-sm-block bg-light rounded"
                             src={logoTeam} alt="" />
 
                     </div>
@@ -55,8 +55,24 @@ function LandingPage() {
                             <p className="lead my-4 fw-bold">
                                 From long term plans to the last minute ones, Likeminded is here to connect you to the people you love!
                             </p>
+                            <br />
+                            <div>
+                                <p className="lead my-4 fw-bold">
+                                    From long term plans to the last minute ones, Likeminded is here to connect you - star star star star
+                                </p>
+                            </div>
+                            <div>
+                                <p className="lead my-4 fw-bold">
+                                    From long term plans to the last minute ones, Likeminded is here to connect you - star star star star
+                                </p>
+                            </div>
+                            <div>
+                                <p className="lead my-4 fw-bold">
+                                    From long term plans to the last minute ones, Likeminded is here to connect you - star star star star
+                                </p>
+                            </div>
                         </div>
-                        <img className="img-fluid img-thumbnail m-3 d-sm-block bg-light rounded-cricle"
+                        <img className="img-fluid img-thumbnail m-3 w-50 d-sm-block bg-light rounded"
                             src={logoFun} alt="" />
 
                     </div>

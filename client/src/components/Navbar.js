@@ -31,8 +31,11 @@ function Navbar() {
                             <li className="nav-item">
                                 <a className="nav-link" href="http://localhost:3000/#">About</a>
                             </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Login / Sign up</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="http://localhost:3000/#">Login / Sign up</a>
+                            </li>
+                            {/* <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="http://localhost:3000/#" role="button" aria-haspopup="true" aria-expanded="true">Login / Sign up</a>
                                 <div className="dropdown-menu">
                                     <a className="dropdown-item" href="#">Action</a>
                                     <a className="dropdown-item" href="#">Another action</a>
@@ -40,7 +43,7 @@ function Navbar() {
                                     <div className="dropdown-divider"></div>
                                     <a className="dropdown-item" href="#">Separated link</a>
                                 </div>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>
