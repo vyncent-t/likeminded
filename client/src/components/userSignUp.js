@@ -1,13 +1,27 @@
 import { Fragment, useState } from "react";
 import { useMutation } from '@apollo/client'
 import { CREATE_NEW_USER } from '../utils/mutations'
+import { FIND_ALL_USERS } from "../utils/queries";
 
 
 function UserSignUp() {
     const [userInfo, setUserInfo] = useState({ email: '', username: '', password: '' })
 
 
-    const [createNewUser, { error }] = useMutation(CREATE_NEW_USER)
+    const [createNewUser, { error }] = useMutation(CREATE_NEW_USER, {
+        update(cache, { data: { createNewUser } }) {
+            try {
+                const { findAllUsers } = cache.readQuery({ query: FIND_ALL_USERS })
+
+                cache.writeQuery({
+                    query: FIND_ALL_USERS,
+                    data: { findAllUsers: [...findAllUsers, createNewUser] }
+                })
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    })
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -21,29 +35,15 @@ function UserSignUp() {
                 },
             })
 
-            window.location.reload()
+            // window.location.reload()
         } catch (err) {
             console.log(err)
         }
     }
 
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
 
-    //     if (name === "email") {
-    //         setUserInfo({ ...userInfo, [name]: value })
-    //         if (name === "username") {
-    //             setUserInfo({ ...userInfo, [name]: value })
-    //         }
-    //         if (name === "password") {
-    //             setUserInfo({ ...userInfo, [name]: value })
-    //         }
-    //     }
-    // }
 
-    // const handleChange = (event) => {
-    //     setUserInfo({ [event.target.name]: event.target.value })
-    // }
+
 
 
     return (
