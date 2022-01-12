@@ -1,10 +1,16 @@
 const { Clique, Comment, Event, Plan, User } = require('../models/index')
+const { AuthenticationError } = require("apollo-server-express")
 
-// x
+// run thisUser and make it work
 
 const resolvers = {
     Query: {
         /*---------------------------------------------------USER QUERY-------------------------------------------------*/
+        thisUser: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id })
+            }
+        },
         findAllUsers: async () => {
             return await User.find({})
         },
@@ -91,9 +97,33 @@ const resolvers = {
 
     Mutation: {
         /*-------------------------------------------------- USER MUTATION ----------------------------------------------*/
+
+
         createNewUser: async (parent, { username, email, password }) => {
-            return await User.create({ username, email, password })
+            const user = await User.create({ username, email, password });
+            const token = signToken(user);
+            return { token, user };
         },
+
+        userLogin: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('No user found with this email address');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
+        },
+
+
         updateUsername: async (parent, args) => {
             return await User.findOneAndUpdate({ _id: args.id }, { username: args.username }, { new: true })
         },

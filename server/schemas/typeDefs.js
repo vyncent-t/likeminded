@@ -12,6 +12,12 @@ const typeDefs = gql`
         created_plans: [Plan]
         created_comments: [Comment]
     }
+
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type Clique {
         _id: ID
         clique_author: User
@@ -49,6 +55,7 @@ const typeDefs = gql`
         comment_body: String
     }
     type Query {
+        thisUser: User
         findAllUsers: [User]
         findUserById(id: ID!): User
         findUserCreatedCliques(id: ID!): [Clique]
@@ -71,6 +78,7 @@ const typeDefs = gql`
     }
     type Mutation {
         createNewUser(username: String!, email: String!, password: String!): User
+        userLogin(email: String!, password: String!): Auth
         updateUsername(id: ID!, username:String!): User
         updateUserEmail(id: ID!, email:String!): User
         updateUserPassword(id: ID!, password:String!): User
