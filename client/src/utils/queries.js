@@ -20,6 +20,16 @@ export const FIND_ALL_EMAILS = gql`
     }
 `;
 
+export const FIND_USERS_CLIQUES = gql`
+    query findUserCliqueMemberOf($id: ID!) {
+        findUserCliqueMemberOf(id: $id) {
+            _id
+            clique_name
+            clique_about
+        }
+    }
+`
+
 // export const FIND_ALL_CLIQUES = gql`
 //     query findAllCliques {
 //         clique {

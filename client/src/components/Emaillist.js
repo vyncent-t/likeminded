@@ -5,7 +5,7 @@ const Emaillist = ({ emails }) => {
     return <div><h3>No Emails Yet</h3></div>;
   }
 
-  console.log("email" + emails.email)
+  console.log("emails " + emails.email)
 
   return (
     <div>
