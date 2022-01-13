@@ -5,6 +5,7 @@ import UserLogIn from "../components/userLogIn";
 
 import Navbar from "../components/Navbar";
 
+import Auth from "../utils/auth"
 
 function CreateLogInPage() {
 
@@ -12,8 +13,12 @@ function CreateLogInPage() {
         <div>
             <Navbar />
             <div className="container d-flex justify-content-between">
-                <UserSignUp />
-                <UserLogIn />
+                {!Auth.loggedIn() ? (<Fragment>
+                    <UserSignUp />
+                    <UserLogIn />
+                </Fragment>) : <Fragment>
+                    <UserLogIn />
+                </Fragment>}
             </div>
             <Samplepage />
         </div>

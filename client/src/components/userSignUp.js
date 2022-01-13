@@ -48,7 +48,7 @@ function UserSignUp() {
 
     return (
         <Fragment>
-            <div className="col-md-6 contents bg-success">
+            <div className="col-md-6 contents bg-success m-3 card-body">
                 <div className="row justify-content-center">
                     <div className="col-md-8">
                         <div className="mb-4">
