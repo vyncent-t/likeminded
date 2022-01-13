@@ -65,6 +65,7 @@ const typeDefs = gql`
         findUserCreatedComments(id: ID!): [Comment]
         findAllCliques: [Clique]
         findCliqueById(id: ID!): Clique
+        findCliqueByNarrow(author_id: ID!,clique_name: String!): Clique
         findAllEvents: [Event]
         findEventById(id: ID!): Event
         findAllCliqueEvents(id: ID!): [Event]

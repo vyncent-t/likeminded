@@ -47,6 +47,10 @@ const resolvers = {
         findCliqueById: async (parent, args) => {
             return await Clique.findById(args.id)
         },
+        // narrow serach by author and clique name
+        findCliqueByNarrow: async (parent, args) => {
+            return await Clique.find({ clique_author: args.author_id, clique_name: args.clique_name })
+        },
 
 
         /*-------------------------------------------------- EVENT QUERY ------------------------------------------------*/

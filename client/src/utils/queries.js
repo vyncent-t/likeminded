@@ -30,6 +30,19 @@ export const FIND_USERS_CLIQUES = gql`
     }
 `
 
+
+export const FIND_NARROW_CLIQUE = gql`
+    query findCliqueByNarrow($author_id: ID!, $clique_name: String!) {
+        findCliqueByNarrow(author_id: $author_id, clique_name: clique_name) {
+            _id
+            clique_name
+            clique_about
+        }
+    }
+`
+
+
+
 // export const FIND_ALL_CLIQUES = gql`
 //     query findAllCliques {
 //         clique {

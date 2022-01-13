@@ -26,3 +26,13 @@ export const LOGIN_USER = gql`
         }
     }
 `
+
+export const CREATE_NEW_CLIQUE = gql`
+    mutation createNewClique($clique_author: ID!, $clique_name: String!, $clique_about: String!) {
+        createNewClique(clique_author: $clique_author, clique_name: $clique_name, clique_about: $clique_about) {
+            _id
+            clique_name
+            clique_about
+        }
+    }
+`

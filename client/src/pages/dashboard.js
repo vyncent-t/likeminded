@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { FIND_USERS_CLIQUES } from '../utils/queries';
 import Navbar from "../components/Navbar"
 import CliqueCard from "../components/cliqueCard"
+import CreateCliqueCard from "../components/createCliqueCard";
 
 import Auth from "../utils/auth"
 
@@ -26,6 +27,7 @@ function Dashboard() {
             <div >
                 <div className="container justify-content-evenly">
                     {loading ? (<div>loading..</div>) : (<CliqueCard cliques={cliques} />)}
+                    <CreateCliqueCard />
                 </div>
             </div>
         </Fragment>
