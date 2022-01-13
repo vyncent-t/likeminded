@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom"
+import Auth from '../utils/auth'
 
 function Navbar() {
+    const logUserOut = (event) => {
+        event.preventDefault();
+        Auth.logout()
+    }
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -31,9 +36,21 @@ function Navbar() {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/about">About</NavLink>
                             </li>
+
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
+                                <div>
+                                    {Auth.loggedIn() ? (
+                                        <div>
+                                            <button className="btn btn-info" onClick={logUserOut}>Logout</button>
+                                        </div>
+                                    ) : (
+                                        <li className="nav-item">
+                                            <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
+                                        </li>
+                                    )}
+                                </div>
                             </li>
+
                             {/* <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="http://localhost:3000/#" role="button" aria-haspopup="true" aria-expanded="true">Login / Sign up</a>
                                 <div className="dropdown-menu">
