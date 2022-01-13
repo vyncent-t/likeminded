@@ -1,11 +1,14 @@
 import { Fragment } from "react";
 import { useState } from "react";
 import { useMutation } from "@apollo/client"
+import { useQuery } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations"
 import { Link } from "react-router-dom"
 
 import Auth from "../utils/auth"
 import { CREATE_NEW_CLIQUE } from "../utils/mutations";
+import { ADD_NEW_MEMBER } from "../utils/mutations";
+import { ADD_NEW_AUTHOR } from "../utils/mutations"
 
 
 function CreateCliqueCard() {
@@ -15,8 +18,15 @@ function CreateCliqueCard() {
     const [formState, setFormState] = useState({ clique_author: userID, clique_name: '', clique_about: '' })
 
     const [createNewClique, { error, data }] = useMutation(CREATE_NEW_CLIQUE)
+    const [addCliqueMember, { errorAdd, dataAdd }] = useMutation(ADD_NEW_MEMBER)
+    const [addCliqueAuthor, { errorAuthor, dataAuthor }] = useMutation(ADD_NEW_AUTHOR)
 
-    // const [findCliqueByNarrow, { errorNarrow, dataNarrow }] = useMutation(FIND_NARROW_CLIQUE)
+
+    // const { loading, dataNarrow } = useQuery(FIND_NARROW_CLIQUE, {
+    //     variables: { author_id: userID, clique_name: formState.clique_name }
+    // })
+
+    // const [findCliqueByNarrow, { errorNarrow, dataNarrow }] = useQuery(FIND_NARROW_CLIQUE)
 
     const handleChange = (event) => {
         // deconstruct the event.target object fields as their own variables
@@ -46,18 +56,19 @@ function CreateCliqueCard() {
             console.error(e)
         }
 
-        // try {
-        //     const { cliqueData } = await findCliqueByNarrow({
-        //         variables: { author_id: userID, clique_name: formState.clique_name }
-        //     })
+        try {
+            const { data } = await addCliqueAuthor({
+                variables: { clique_author: userID, clique_name: formState.clique_name, newUser: userID }
+            })
 
-        //     const narrowID = cliqueData._id
+            console.log("created!")
+        } catch (e) {
+            console.log("error in clique narrow")
+            console.error(e)
+        }
 
-        // } catch (e) {
-        //     console.log("error in clique narrow")
-        //     console.error(e)
-        // }
 
+        window.location.reload();
     }
 
     return (

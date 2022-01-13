@@ -152,6 +152,10 @@ const resolvers = {
         addCliqueMember: async (parent, { id, newUser }) => {
             return await Clique.findByIdAndUpdate({ _id: id }, { $push: { clique_members: newUser } })
         },
+        // add author to member to clique
+        addCliqueAuthor: async (parent, { clique_author, clique_name, newUser }) => {
+            return await Clique.findOneAndUpdate({ clique_author: clique_author, clique_name: clique_name }, { $push: { clique_members: newUser } })
+        },
         // remove member to clique
         removeCliqueMember: async (parent, { id, targetUser }) => {
             return await Clique.findByIdAndUpdate({ _id: id }, { $pull: { clique_members: targetUser } })

@@ -15,7 +15,7 @@ function CliqueCard({ cliques }) {
             <div>
                 {cliques &&
                     cliques.map((clique) => (
-                        <div className="card bg-light mb-3">
+                        <div className="card bg-light mb-3" key={clique._id}>
                             <div className="card-header">
                                 Clique
                             </div>

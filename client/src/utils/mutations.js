@@ -36,3 +36,24 @@ export const CREATE_NEW_CLIQUE = gql`
         }
     }
 `
+
+export const ADD_NEW_MEMBER = gql`
+    mutation addCliqueMember($id: ID!, $newUser: ID!) {
+        addCliqueMember(id: $id, newUser: $newUser) {
+            _id
+            clique_name
+            clique_about
+        }
+    }
+`
+
+export const ADD_NEW_AUTHOR = gql`
+    mutation addCliqueAuthor($clique_author: ID!, $clique_name: String!, $newUser: ID!) {
+        addCliqueAuthor(clique_author: $clique_author, clique_name: $clique_name, newUser: $newUser) {
+            _id
+            clique_name
+            clique_about
+        }
+    }
+`
+

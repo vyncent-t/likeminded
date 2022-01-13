@@ -86,6 +86,7 @@ const typeDefs = gql`
         deleteUserById(id: ID!): User
         createNewClique(clique_author: ID!, clique_name: String!, clique_about: String!): Clique
         addCliqueMember(id: ID!, newUser: ID!): Clique
+        addCliqueAuthor(clique_author: ID!, clique_name: String!, newUser: ID!): Clique
         removeCliqueMember(id: ID!, targetUser: ID!): Clique
         updateCliqueName(id: ID!, cliqueName: String!): Clique
         updateCliqueAbout(id: ID!, cliqueAbout: String!): Clique
