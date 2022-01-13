@@ -1,57 +1,91 @@
 import { Fragment } from "react";
+import { useState } from "react";
+import { useMutation } from "@apollo/client"
+import { LOGIN_USER } from "../utils/mutations"
+import { Link } from "react-router-dom"
+
+import Auth from "../utils/auth"
 
 
 function UserLogIn() {
 
+
+    const [formState, setFormState] = useState({ email: '', password: '' });
+
+    const [userLogin, { error, data }] = useMutation(LOGIN_USER);
+
+    // update the form state based on changes in the inputs
+    const handleChange = (event) => {
+        // deconstruct the event.target object fields as their own variables
+        const { name, value } = event.target
+
+        setFormState({
+            ...formState,
+            [name]: value
+        })
+    }
+
+    const handleFormSubmission = async (event) => {
+        event.preventDefault();
+        console.log(formState)
+
+        try {
+            const { data } = await userLogin({
+                variables: { ...formState },
+            })
+
+            Auth.login(data.userLogin.token)
+        } catch (e) {
+            console.error(e)
+        }
+
+
+    }
+
     return (
         <Fragment>
-            <div className="col-md-6 contents">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="mb-4">
-                            <h3>Sign In</h3>
-                            <p className="mb-4">Welcome to Likeminded, come connect with your cliques.</p>
-                        </div>
-                        <form className="flex-row justify-center justify-space-between-md" >
-                            {/* <div className="form-group row m-2 justify-content-around">
-                                <div>
-                                    <label className="col-sm-2 col-form-label">Email</label>
-                                    <div className="col-sm-10">
-                                        <input name="email" type="email" className="form-control" placeholder="Email" />
-                                    </div>
-                                </div>
-                            </div> */}
+            <div className="col-12 col-lg-10">
+                <div className="card">
+                    <h4 className="card-header bg-dark text-light p-2">Login</h4>
+                    <div className="card-body">
+                        {data ? (
+                            <p>
+                                Success! You may now head{' '}
+                                <Link to="/">back to the homepage.</Link>
+                            </p>
+                        ) : (
+                            <form onSubmit={handleFormSubmission}>
+                                <input
+                                    className="form-input"
+                                    placeholder="Your email"
+                                    name="email"
+                                    type="email"
+                                    value={formState.email}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder="******"
+                                    name="password"
+                                    type="password"
+                                    value={formState.password}
+                                    onChange={handleChange}
+                                />
+                                <button
+                                    className="btn btn-block btn-primary"
+                                    style={{ cursor: 'pointer' }}
+                                    type="submit"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        )}
 
-                            <div className="form-group row m-2">
-                                <div>
-                                    <label className="col-sm-2 col-form-label">Username</label>
-                                    <div className="col-sm-10">
-                                        <input name="username" type="text" className="form-control" placeholder="Username" />
-                                    </div>
-                                </div>
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white">
+                                {error.message}
                             </div>
-
-                            <div className="form-group row m-2">
-                                <div>
-                                    <label className="col-sm-2 col-form-label">Password</label>
-                                    <div className="col-sm-10">
-                                        <input name="password" type="password" className="form-control" placeholder="Password" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form-group row m-2 mt-3">
-                                <div className="col-sm-10">
-                                    <button type="submit" className="btn btn-primary">Log in</button>
-                                </div>
-
-                                {/* {error && (
-                                    <div className="col-12 my-3 bg-danger text-white p-3">
-                                        Something went wrong...
-                                    </div>
-                                )} */}
-                            </div>
-                        </form>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 const { Clique, Comment, Event, Plan, User } = require('../models/index')
 const { AuthenticationError } = require("apollo-server-express")
+const { signToken } = require('../utils/auth')
 
 // run thisUser and make it work
 

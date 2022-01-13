@@ -77,7 +77,7 @@ const typeDefs = gql`
         findPlanComments(id: ID!): [Comment]
     }
     type Mutation {
-        createNewUser(username: String!, email: String!, password: String!): User
+        createNewUser(username: String!, email: String!, password: String!): Auth
         userLogin(email: String!, password: String!): Auth
         updateUsername(id: ID!, username:String!): User
         updateUserEmail(id: ID!, email:String!): User
