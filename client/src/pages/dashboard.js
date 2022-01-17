@@ -26,7 +26,7 @@ function Dashboard() {
             <div>{`welcome ${userID}`}</div>
             <div >
                 <div className="container justify-content-evenly">
-                    {loading ? (<div>loading..</div>) : (<CliqueCard cliques={cliques} />)}
+                    {loading ? (<div>loading..</div>) : (<CliqueCard cliques={cliques} currentUserID={userID} />)}
                     <CreateCliqueCard />
                 </div>
             </div>

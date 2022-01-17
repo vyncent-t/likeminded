@@ -26,6 +26,7 @@ export const FIND_USERS_CLIQUES = gql`
             _id
             clique_name
             clique_about
+            clique_author 
         }
     }
 `

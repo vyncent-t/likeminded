@@ -1,7 +1,16 @@
 
 
+import Auth from "../utils/auth"
 
-function CliqueCard({ cliques }) {
+
+function CliqueCard(props) {
+
+    console.log(`current props ${props}`)
+
+    const currentUserID = props.currentUserID
+    const cliques = props.cliques
+
+    console.log(props.currentUserID)
 
     if (!cliques.length) {
         return <div><h3>No Cliques joined yet!</h3></div>
@@ -22,7 +31,16 @@ function CliqueCard({ cliques }) {
                             <div className="card-body">
                                 <h4 className="card-title">{clique.clique_name}</h4>
                                 <p>{clique.clique_about}</p>
+                                <p>clique author id: {clique.clique_author}</p>
+                                <p>current user id: {currentUserID}</p>
                             </div>
+                            {currentUserID === clique.clique_author ? (<div>
+                                <button className="btn btn-danger">Delete</button>
+                                <button className="btn btn-info">Update</button>
+                                <div>More...</div>
+                            </div>) : (<div>
+                                <div>Click...</div>
+                            </div>)}
                         </div>
                     ))}
             </div>

@@ -20,7 +20,7 @@ const typeDefs = gql`
 
     type Clique {
         _id: ID
-        clique_author: User
+        clique_author: ID
         clique_name: String
         clique_members: [User]
         clique_about: String
@@ -29,7 +29,7 @@ const typeDefs = gql`
     
     type Event {
         _id: ID
-        event_author: User
+        event_author: ID
         parent_clique: Clique
         event_name: String
         event_about: String
@@ -39,7 +39,7 @@ const typeDefs = gql`
     
     type Plan {
         _id: ID
-        plan_author: User
+        plan_author: ID
         parent_event: Event
         plan_name: String
         total_votes: Int
@@ -49,7 +49,7 @@ const typeDefs = gql`
     }
     type Comment {
         _id: ID
-        comment_author: User
+        comment_author: ID
         plan_context: Plan
         event_context: Event
         comment_body: String
