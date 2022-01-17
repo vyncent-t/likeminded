@@ -1,13 +1,12 @@
-import { Fragment } from "react";
+
 import { useState } from "react";
 import { useMutation } from "@apollo/client"
-import { useQuery } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations"
-import { Link } from "react-router-dom"
+
+
 
 import Auth from "../utils/auth"
 import { CREATE_NEW_CLIQUE } from "../utils/mutations";
-import { ADD_NEW_MEMBER } from "../utils/mutations";
+// import { ADD_NEW_MEMBER } from "../utils/mutations";
 import { ADD_NEW_AUTHOR } from "../utils/mutations"
 
 
@@ -17,16 +16,10 @@ function CreateCliqueCard() {
 
     const [formState, setFormState] = useState({ clique_author: userID, clique_name: '', clique_about: '' })
 
-    const [createNewClique, { error, data }] = useMutation(CREATE_NEW_CLIQUE)
-    const [addCliqueMember, { errorAdd, dataAdd }] = useMutation(ADD_NEW_MEMBER)
+    const [createNewClique, { error, dataClique }] = useMutation(CREATE_NEW_CLIQUE)
+    // const [addCliqueMember, { errorAdd, dataAdd }] = useMutation(ADD_NEW_MEMBER)
     const [addCliqueAuthor, { errorAuthor, dataAuthor }] = useMutation(ADD_NEW_AUTHOR)
 
-
-    // const { loading, dataNarrow } = useQuery(FIND_NARROW_CLIQUE, {
-    //     variables: { author_id: userID, clique_name: formState.clique_name }
-    // })
-
-    // const [findCliqueByNarrow, { errorNarrow, dataNarrow }] = useQuery(FIND_NARROW_CLIQUE)
 
     const handleChange = (event) => {
         // deconstruct the event.target object fields as their own variables
@@ -51,20 +44,24 @@ function CreateCliqueCard() {
             })
 
             console.log(`run in match clique id: ${data._id}`)
+            console.log(`creating clique... ${dataClique}`)
         } catch (e) {
             console.log("error in clique creation")
             console.error(e)
+            console.error(error)
         }
 
         try {
-            const { data } = await addCliqueAuthor({
+            const { dataA } = await addCliqueAuthor({
                 variables: { clique_author: userID, clique_name: formState.clique_name, newUser: userID }
             })
 
-            console.log("created!")
+            console.log(`created a new clique, author id: ${dataA}`)
+            console.log(`created a new clique: ${dataAuthor}`)
         } catch (e) {
-            console.log("error in clique narrow")
+            console.log("error in clique author pin")
             console.error(e)
+            console.error(errorAuthor)
         }
 
 

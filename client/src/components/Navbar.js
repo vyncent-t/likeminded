@@ -37,19 +37,11 @@ function Navbar() {
                                 <NavLink className="nav-link" to="/about">About</NavLink>
                             </li>
 
-                            <li className="nav-item">
-                                <div>
-                                    {Auth.loggedIn() ? (
-                                        <div>
-                                            <button className="btn btn-info" onClick={logUserOut}>Logout</button>
-                                        </div>
-                                    ) : (
-                                        <li className="nav-item">
-                                            <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
-                                        </li>
-                                    )}
-                                </div>
-                            </li>
+                            {Auth.loggedIn() && <li className="nav-item">
+                                <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
+                            </li>}
+
+
 
                             {/* <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="http://localhost:3000/#" role="button" aria-haspopup="true" aria-expanded="true">Login / Sign up</a>
@@ -62,6 +54,17 @@ function Navbar() {
                                 </div>
                             </li> */}
                         </ul>
+                        <div className="justify-content-end" >
+                            {Auth.loggedIn() ? (
+                                <div>
+                                    <button className="btn btn-info" onClick={logUserOut}>Logout</button>
+                                </div>
+                            ) : (
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
+                                </li>
+                            )}
+                        </div>
 
                     </div>
                 </div>
