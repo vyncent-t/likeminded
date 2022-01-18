@@ -36,7 +36,7 @@ function EditCliqueCard(props) {
 
 
 
-    const [formState, setFormState] = useState({ id: cliqueID, clique_name: '', clique_about: '' })
+    const [formState, setFormState] = useState({ id: cliqueID, clique_name: props.cliqueName, clique_about: props.cliqueAbout })
 
 
 
@@ -99,7 +99,7 @@ function EditCliqueCard(props) {
 
 
 
-        window.location.replace(`/clique/${cliqueID}`);
+        window.location.replace(`/clique/${cliqueID}/edit`);
     }
 
     return (
