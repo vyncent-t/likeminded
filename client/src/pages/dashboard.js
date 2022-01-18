@@ -9,6 +9,11 @@ import Auth from "../utils/auth"
 
 function Dashboard() {
 
+    // redirect user on not logged in
+    if (!Auth.loggedIn()) {
+        window.location.replace('http://localhost:3000/')
+    }
+
     const userID = Auth.getUser().data._id
     // need to set up variables when finding by id
     const { loading, data } = useQuery(FIND_USERS_CLIQUES, {

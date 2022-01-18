@@ -17,6 +17,12 @@ import Auth from "../utils/auth"
 
 
 function CliquePage() {
+
+    // redirect user on not logged in
+    if (!Auth.loggedIn()) {
+        window.location.replace('http://localhost:3000/')
+    }
+
     const params = useParams()
     console.log(params)
     const currentUserID = Auth.getUser().data._id
@@ -60,7 +66,7 @@ function CliquePage() {
             console.log(deleteError)
         }
 
-        window.location.reload();
+        window.location.replace("http://localhost:3000/dashboard");
 
     }
 
