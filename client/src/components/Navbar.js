@@ -53,18 +53,18 @@ function Navbar() {
                                     <a className="dropdown-item" href="#">Separated link</a>
                                 </div>
                             </li> */}
+                            <div className="justify-content-end" >
+                                {Auth.loggedIn() ? (
+                                    <div>
+                                        <button className="btn btn-info" onClick={logUserOut}>Logout</button>
+                                    </div>
+                                ) : (
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
+                                    </li>
+                                )}
+                            </div>
                         </ul>
-                        <div className="justify-content-end" >
-                            {Auth.loggedIn() ? (
-                                <div>
-                                    <button className="btn btn-info" onClick={logUserOut}>Logout</button>
-                                </div>
-                            ) : (
-                                <li className="nav-item">
-                                    <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
-                                </li>
-                            )}
-                        </div>
 
                     </div>
                 </div>

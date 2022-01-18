@@ -25,7 +25,7 @@ function Dashboard() {
             <h1>{`welcome ${Auth.getUser().data.username}`}</h1>
             <div>{`welcome ${userID}`}</div>
             <div >
-                <div className="container justify-content-evenly">
+                <div className="container justify-content-center">
                     {loading ? (<div>loading..</div>) : (<CliqueCard cliques={cliques} currentUserID={userID} />)}
                     <CreateCliqueCard />
                 </div>

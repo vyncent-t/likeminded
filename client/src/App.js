@@ -11,6 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import LandingPage from './pages/landingpage'
 import CreateLogInPage from './pages/createLogInPage';
 import Dashboard from './pages/dashboard';
+import CliquePage from './pages/cliquePage'
 
 
 
@@ -46,6 +47,8 @@ function App() {
     <ApolloProvider client={client}>
       <Routes>
         <Route path="/welcome" element={<CreateLogInPage />} />
+        <Route path="/clique/:cliqueID" element={<CliquePage />} />
+        <Route path="/clique" element={<CliquePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<Navigate replace to="/" />} />

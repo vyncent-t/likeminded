@@ -69,53 +69,59 @@ function CreateCliqueCard() {
     }
 
     return (
-        <div>
-            <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmission}>
-                <div className="form-group row m-2 justify-content-around">
-                    <div>
-                        <label className="col-sm-2 col-form-label">Clique Name</label>
+        <div className="card card-header m-3">
+            <div>
+                <h4 className="card-title">Create new clique</h4>
+            </div>
+            <div className="container">
+                <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmission}>
+                    <div className="form-group row m-2 justify-content-around">
+                        <div>
+                            <label className="col-sm-2 col-form-label">Clique Name</label>
+                            <div className="col-sm-10">
+                                <input
+                                    className="form-control"
+                                    placeholder="Clique Name"
+                                    name="clique_name"
+                                    type="text"
+                                    value={formState.clique_name}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form-group row m-2">
+                        <div>
+                            <label className="col-sm-2 col-form-label">About this clique</label>
+                            <div className="col-sm-10">
+                                <input
+                                    className="form-control"
+                                    placeholder="Description"
+                                    name="clique_about"
+                                    type="text"
+                                    value={formState.clique_about}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="form-group row m-2 mt-3">
                         <div className="col-sm-10">
-                            <input
-                                className="form-control"
-                                placeholder="Clique Name"
-                                name="clique_name"
-                                type="text"
-                                value={formState.clique_name}
-                                onChange={handleChange}
-                            />
+                            <button type="submit" className="btn btn-primary">Create Clique</button>
                         </div>
+
+                        {error && (
+                            <div className="my-3 p-3 bg-danger text-white rounded">
+                                {error.message}
+                            </div>
+                        )}
                     </div>
-                </div>
+                </form>
+            </div>
 
-                <div className="form-group row m-2">
-                    <div>
-                        <label className="col-sm-2 col-form-label">About this clique</label>
-                        <div className="col-sm-10">
-                            <input
-                                className="form-control"
-                                placeholder="Description"
-                                name="clique_about"
-                                type="text"
-                                value={formState.clique_about}
-                                onChange={handleChange}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className="form-group row m-2 mt-3">
-                    <div className="col-sm-10">
-                        <button type="submit" className="btn btn-primary">Create Clique</button>
-                    </div>
-
-                    {error && (
-                        <div className="my-3 p-3 bg-danger text-white rounded">
-                            {error.message}
-                        </div>
-                    )}
-                </div>
-            </form>
         </div>
     )
 }

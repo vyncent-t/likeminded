@@ -42,6 +42,16 @@ export const FIND_NARROW_CLIQUE = gql`
     }
 `
 
+export const FIND_CLIQUE = gql`
+    query findCliqueById($id: ID!) {
+        findCliqueById(id: $id) {
+            _id
+            clique_name
+            clique_about
+            clique_author 
+        }
+    }
+`
 
 
 // export const FIND_ALL_CLIQUES = gql`
