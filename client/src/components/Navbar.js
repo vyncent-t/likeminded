@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
 import Auth from '../utils/auth'
+import { Fragment } from "react"
 
 function Navbar() {
     const logUserOut = (event) => {
@@ -16,30 +17,30 @@ function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarColor01">
                         <ul className="navbar-nav me-auto">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/">Home
-                                    <span className="visually-hidden">(current)</span>
-                                </NavLink>
-                            </li>
-                            {/* <li className="nav-item">
-                                <a className="nav-link active" href="#">Home
-                                    <span className="visually-hidden">(current)</span>
-                                </a>
-                            </li> */}
-                            {/* <li className="nav-item">
-                                <a className="nav-link" href="#">Dashboard</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Pricing</a>
-                            </li>
- */}
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/about">About</NavLink>
-                            </li>
 
-                            {Auth.loggedIn() && <li className="nav-item">
-                                <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
-                            </li>}
+
+                            {Auth.loggedIn() ?
+                                <Fragment>
+                                    <li className="nav-item">
+                                        <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
+                                    </li>
+                                    <button className="btn btn-info" onClick={logUserOut}>Logout</button>
+                                </Fragment> : (
+                                    <Fragment>
+                                        <li className="nav-item">
+                                            <NavLink className="nav-link" to="/">Home
+                                                <span className="visually-hidden">(current)</span>
+                                            </NavLink>
+                                        </li>
+
+                                        <li className="nav-item">
+                                            <NavLink className="nav-link" to="/about">About</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
+                                        </li>
+                                    </Fragment>
+                                )}
 
 
 
@@ -53,17 +54,6 @@ function Navbar() {
                                     <a className="dropdown-item" href="#">Separated link</a>
                                 </div>
                             </li> */}
-                            <div className="justify-content-end" >
-                                {Auth.loggedIn() ? (
-                                    <div>
-                                        <button className="btn btn-info" onClick={logUserOut}>Logout</button>
-                                    </div>
-                                ) : (
-                                    <li className="nav-item">
-                                        <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
-                                    </li>
-                                )}
-                            </div>
                         </ul>
 
                     </div>

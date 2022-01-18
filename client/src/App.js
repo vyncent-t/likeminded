@@ -47,8 +47,9 @@ function App() {
     <ApolloProvider client={client}>
       <Routes>
         <Route path="/welcome" element={<CreateLogInPage />} />
-        <Route path="/clique/:cliqueID" element={<CliquePage />} />
         <Route path="/clique" element={<CliquePage />} />
+        <Route path="/clique/:cliqueID" element={<CliquePage />} />
+        <Route path="/clique/:cliqueID/:edit" element={<CliquePage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<Navigate replace to="/" />} />

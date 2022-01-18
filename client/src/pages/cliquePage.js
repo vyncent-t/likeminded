@@ -93,7 +93,7 @@ function CliquePage() {
                                         <p>clique author id: {data.findCliqueById.clique_author}</p>
                                         <p>current user id: {currentUserID}</p>
                                     </div>
-                                    {currentUserID === data.findCliqueById.clique_author ? (<div className="container d-flex justify-content-end">
+                                    {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") ? (<div className="container d-flex justify-content-end">
                                         {!deleteModalOpen ? (<button className="btn btn-danger m-3" onClick={toggleDeleteModal}>Delete</button>) : (<div>
                                             <p>Are you sure you want to delete?</p>
                                             <button type="button" className="btn btn-danger m-3" value={data.findCliqueById._id} onClick={deleteChosenClique}>Delete clique</button>

@@ -32,7 +32,7 @@ function CliqueCard(props) {
                             </div>
                             <div><Link to={`/clique/${clique._id}`}><button type="button" className="btn btn-primary m-3">View</button></Link>
                                 {currentUserID === clique.clique_author && (
-                                    <button type="button" className="btn btn-info m-3">Edit</button>
+                                    <Link to={`/clique/${clique._id}/edit`}><button type="button" className="btn btn-info m-3">Edit</button></Link>
                                 )}
                             </div>
                         </div>
