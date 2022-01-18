@@ -7,7 +7,7 @@ import { DELETE_CLIQUE } from "../utils/mutations"
 
 import Navbar from "../components/Navbar"
 import CliqueCard from "../components/cliqueCard"
-import CreateCliqueCard from "../components/createCliqueCard";
+import EditCliqueCard from "../components/editCliqueCard";
 
 
 
@@ -32,6 +32,15 @@ function CliquePage() {
     function toggleDeleteModal() {
         toggleDeleteModalOpen(!deleteModalOpen)
     }
+
+
+    const [updateModalOpen, toggleUpdateModalOpen] = useState(false)
+
+    function toggleUpdateModal() {
+        toggleUpdateModalOpen(!updateModalOpen)
+    }
+
+
 
     const cliqueID = params.cliqueID
 
@@ -93,20 +102,36 @@ function CliquePage() {
                                         <p>clique author id: {data.findCliqueById.clique_author}</p>
                                         <p>current user id: {currentUserID}</p>
                                     </div>
-                                    {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") ? (<div className="container d-flex justify-content-end">
-                                        {!deleteModalOpen ? (<button className="btn btn-danger m-3" onClick={toggleDeleteModal}>Delete</button>) : (<div>
-                                            <p>Are you sure you want to delete?</p>
-                                            <button type="button" className="btn btn-danger m-3" value={data.findCliqueById._id} onClick={deleteChosenClique}>Delete clique</button>
-                                            <button type="button" className="btn m-3" onClick={toggleDeleteModal}>Cancel</button>
-                                        </div>)}
-                                        <div>
-                                            <button type="button" className="btn btn-info m-3">Update</button>
-                                        </div>
-                                    </div>) : (<div>
-                                        <div>Click...</div>
-                                    </div>)}
+
+
+                                    <div className="container">
+
+                                        {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") ? (
+                                            <div className="container d-flex justify-content-end">
+                                                <div>
+                                                    {!deleteModalOpen ? (<button className="btn btn-danger m-3" onClick={toggleDeleteModal}>Delete</button>) : (<div>
+                                                        <p>Are you sure you want to delete?</p>
+                                                        <button type="button" className="btn btn-danger m-3" value={data.findCliqueById._id} onClick={deleteChosenClique}>Delete clique</button>
+                                                        <button type="button" className="btn m-3" onClick={toggleDeleteModal}>Cancel</button>
+                                                    </div>)}
+                                                </div>
+                                                <div>
+                                                    <button className="btn btn-info m-3" onClick={toggleUpdateModal}>Edit</button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <div>Click...</div>
+                                            </div>)}
+                                    </div>
                                 </div>)
                             }
+                            {updateModalOpen && <div>
+                                <EditCliqueCard editCliqueID={data.findCliqueById._id}
+                                    editCliqueName={data.findCliqueById.clique_name}
+                                    editCliqueAbout={data.findCliqueById.clique_about}
+                                />
+                            </div>}
                         </div>)}
                 </div>
             </div>

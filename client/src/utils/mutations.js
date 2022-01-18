@@ -55,6 +55,28 @@ export const ADD_NEW_MEMBER = gql`
 }
 `
 
+export const EDIT_CLIQUE_NAME = gql`
+    mutation updateCliqueName($id: ID!, $clique_name: String!) {
+    updateCliqueName(id: $id, clique_name: $clique_name) {
+        _id
+        clique_name
+        clique_about
+    }
+}
+`
+
+export const EDIT_CLIQUE_ABOUT = gql`
+    mutation updateCliqueAbout($id: ID!, $clique_about: String!) {
+    updateCliqueAbout(id: $id, clique_about: $clique_about) {
+        _id
+        clique_name
+        clique_about
+    }
+}
+`
+
+
+
 export const ADD_NEW_AUTHOR = gql`
     mutation addCliqueAuthor($clique_author: ID!, $clique_name: String!, $newUser: ID!) {
     addCliqueAuthor(clique_author: $clique_author, clique_name: $clique_name, newUser: $newUser) {

@@ -88,8 +88,8 @@ const typeDefs = gql`
         addCliqueMember(id: ID!, newUser: ID!): Clique
         addCliqueAuthor(clique_author: ID!, clique_name: String!, newUser: ID!): Clique
         removeCliqueMember(id: ID!, targetUser: ID!): Clique
-        updateCliqueName(id: ID!, cliqueName: String!): Clique
-        updateCliqueAbout(id: ID!, cliqueAbout: String!): Clique
+        updateCliqueName(id: ID!, clique_name: String!): Clique
+        updateCliqueAbout(id: ID!, clique_about: String!): Clique
         deleteCliqueById(id: ID!): Clique
         createNewEvent(event_author: ID!, parent_clique: ID!, event_name: String!, event_about: String!): Event
         updateEventName(id: ID!, eventName: String!): Event

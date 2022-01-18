@@ -162,11 +162,11 @@ const resolvers = {
         },
         // update the name of the clique by id
         updateCliqueName: async (parent, args) => {
-            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_name: args.cliqueName }, { new: true })
+            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_name: args.clique_name }, { new: true })
         },
         // update the about of the clique by id
         updateCliqueAbout: async (parent, args) => {
-            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_about: args.cliqueAbout }, { new: true })
+            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_about: args.clique_about }, { new: true })
         },
         // delete clique by id
         deleteCliqueById: async (parent, args) => {
