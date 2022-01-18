@@ -1,8 +1,10 @@
 import { Fragment, useState } from "react";
 import { useMutation } from '@apollo/client'
 import { CREATE_NEW_USER } from '../utils/mutations'
+import { LOGIN_USER } from "../utils/mutations"
 import { FIND_ALL_USERS } from "../utils/queries";
 
+import Auth from "../utils/auth"
 
 function UserSignUp() {
     const [userInfo, setUserInfo] = useState({ email: '', username: '', password: '' })
@@ -23,22 +25,34 @@ function UserSignUp() {
         }
     })
 
+    const [userLogin, { errorLog, data }] = useMutation(LOGIN_USER);
+
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         try {
             const { data } = await createNewUser({
-                variables: {
-                    username: userInfo.username,
-                    email: userInfo.email,
-                    password: userInfo.password
-                },
+                variables: { ...userInfo },
             })
 
             // window.location.reload()
         } catch (err) {
             console.log(err)
         }
+
+
+        try {
+            const { data } = await userLogin({
+                variables: { email: userInfo.email, password: userInfo.password },
+            })
+
+            Auth.login(data.userLogin.token)
+        } catch (e) {
+            console.error(e)
+        }
+
+
     }
 
 

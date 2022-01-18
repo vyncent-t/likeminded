@@ -2,6 +2,8 @@ const { Clique, Comment, Event, Plan, User } = require('../models/index')
 const { AuthenticationError } = require("apollo-server-express")
 const { signToken } = require('../utils/auth')
 
+
+
 // run thisUser and make it work
 
 const resolvers = {
@@ -106,7 +108,7 @@ const resolvers = {
 
         createNewUser: async (parent, { username, email, password }) => {
             const user = await User.create({ username, email, password });
-            const token = signToken(user);
+            const token = await signToken(user);
             return { token, user };
         },
 
