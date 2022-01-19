@@ -54,6 +54,17 @@ export const FIND_CLIQUE = gql`
 `
 
 
+export const FIND_USERNAME = gql`
+    query findUserByUsername($username: String!) {
+        findUserByUsername(username: $username) {
+            _id
+            username
+            email
+        }
+    }
+`
+
+
 // export const FIND_ALL_CLIQUES = gql`
 //     query findAllCliques {
 //         clique {

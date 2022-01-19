@@ -20,6 +20,9 @@ const resolvers = {
         findUserById: async (parent, args) => {
             return await User.findById(args.id)
         },
+        findUserByUsername: async (parent, args) => {
+            return await User.findOne({ username: args.username })
+        },
         // finds all the cliques the user is the author of
         findUserCreatedCliques: async (parent, args) => {
             return await Clique.find({ clique_author: args.id })

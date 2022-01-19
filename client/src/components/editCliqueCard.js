@@ -24,6 +24,7 @@ function EditCliqueCard(props) {
     }
 
 
+
     const cliqueID = props.editCliqueID
     console.log(`ready edits for clique ID ${cliqueID}`)
 

@@ -58,6 +58,7 @@ const typeDefs = gql`
         thisUser: User
         findAllUsers: [User]
         findUserById(id: ID!): User
+        findUserByUsername(username: String!): User
         findUserCreatedCliques(id: ID!): [Clique]
         findUserCliqueMemberOf(id: ID!): [Clique]
         findUserCreatedEvents(id: ID!): [Event]

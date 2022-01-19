@@ -12,6 +12,7 @@ import EditCliqueCard from "../components/editCliqueCard";
 
 
 import Auth from "../utils/auth"
+import InviteCard from "../components/inviteCard";
 
 
 
@@ -34,11 +35,20 @@ function CliquePage() {
     }
 
 
+
+    const [inviteModalOpen, toggleInviteModalOpen] = useState(false)
+
+    function toggleInviteModal() {
+        toggleInviteModalOpen(!inviteModalOpen)
+    }
+
+
     const [updateModalOpen, toggleUpdateModalOpen] = useState(false)
 
     function toggleUpdateModal() {
         toggleUpdateModalOpen(!updateModalOpen)
     }
+
 
 
 
@@ -93,8 +103,13 @@ function CliquePage() {
                         (<div>
                             {data &&
                                 (<div className="card bg-light mb-3">
-                                    <div className="card-header">
+                                    <div className="card-header container d-flex justify-content-between">
                                         <h4 className="card-title">{data.findCliqueById.clique_name}</h4>
+                                        {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") && (
+                                            <div>
+                                                <button className="btn btn-primary" onClick={toggleInviteModal}>invite</button>
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="card-body">
                                         <p>{data.findCliqueById.clique_about}</p>
@@ -132,6 +147,14 @@ function CliquePage() {
                                     editCliqueAbout={data.findCliqueById.clique_about}
                                 />
                             </div>}
+
+
+                            {inviteModalOpen &&
+                                <div>
+                                    <InviteCard CliqueID={data.findCliqueById._id} />
+                                </div>}
+
+
                         </div>)}
                 </div>
             </div>
