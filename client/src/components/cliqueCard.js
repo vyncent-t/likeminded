@@ -17,7 +17,7 @@ function CliqueCard(props) {
     return (
         <div>
             <h3>Cliques</h3>
-            <div className="containter d-flex justify-content-center">
+            <div className="containter d-flex ">
                 {cliques &&
                     cliques.map((clique) => (
                         <div className="card bg-light mb-3 m-4" key={clique._id}>

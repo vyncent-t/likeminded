@@ -67,8 +67,8 @@ const resolvers = {
             return await Event.findById(args.id)
         },
         // finds all the events under this Clique
-        findAllCliqueEvents: async (parent, args) => {
-            return await Event.find({ parent_clique: args.id })
+        findAllCliqueEvents: async (parent, { id }) => {
+            return await Event.find({ parent_clique: id })
         },
 
 

@@ -13,6 +13,8 @@ import EditCliqueCard from "../components/editCliqueCard";
 
 import Auth from "../utils/auth"
 import InviteCard from "../components/inviteCard";
+import EventCard from "../components/eventCard";
+import CreateEventCard from "../components/createEventCard";
 
 
 
@@ -97,7 +99,7 @@ function CliquePage() {
             <Navbar />
             <h1>{`Clique info - reader ${Auth.getUser().data.username}`}</h1>
             <div>{`welcome id user ${currentUserID}`}</div>
-            <div>
+            <div className="container">
                 <div className="container justify-content-evenly">
                     {loading ? (<div>loading..</div>) :
                         (<div>
@@ -157,6 +159,8 @@ function CliquePage() {
 
                         </div>)}
                 </div>
+                <EventCard currentUserID={currentUserID} />
+                <CreateEventCard currentUserID={currentUserID} currentCliqueID={cliqueID} />
             </div>
         </Fragment>
     )

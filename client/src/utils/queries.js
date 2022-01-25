@@ -65,6 +65,17 @@ export const FIND_USERNAME = gql`
 `
 
 
+export const FIND_EVENTS = gql`
+    query findAllCliqueEvents($id: ID!) {
+        findAllCliqueEvents(id: $id) {
+            _id
+            event_name
+            event_about
+            event_author
+        }
+    }
+`
+
 // export const FIND_ALL_CLIQUES = gql`
 //     query findAllCliques {
 //         clique {

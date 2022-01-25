@@ -36,6 +36,7 @@ export const CREATE_NEW_CLIQUE = gql`
         }
     }
 `
+
 export const DELETE_CLIQUE = gql`
 
     mutation deleteCliqueById($id: ID!) {
@@ -87,3 +88,14 @@ export const ADD_NEW_AUTHOR = gql`
 }
 `
 
+
+export const CREATE_NEW_EVENT = gql`
+    mutation createNewEvent($event_author: ID!, $parent_clique: ID!, $event_name: String!, $event_about: String!) {
+        createNewEvent(event_author: $event_author,parent_clique: $parent_clique, event_name: $event_name, event_about: $event_about) {
+            _id
+            event_name
+            event_about
+            event_author
+        }
+    }
+`
