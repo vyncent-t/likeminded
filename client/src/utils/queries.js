@@ -110,7 +110,6 @@ export const FIND_PLAN = gql`
             plan_about
             plan_author 
             parent_event
-            favored_by
         }
     }
 `

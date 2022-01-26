@@ -42,8 +42,11 @@ function PlanCard(props) {
                         {
                             plans.map((plan) => (
                                 <div className="card bg-light mb-3 m-4" key={plan._id}>
-                                    <div className="card-header">
+                                    <div className="card-header d-flex justify-content-between">
                                         <h4 className="card-title">{plan.plan_name}</h4>
+                                        <div>
+                                            <button className="btn btn-primary">Vote<i className="bi bi-check-square m-2"></i></button>
+                                        </div>
                                     </div>
                                     <div className="card-body">
                                         <p>{plan.plan_about}</p>
@@ -57,9 +60,6 @@ function PlanCard(props) {
                                         {currentUserID === plan.plan_author && (
                                             <Link to={`/clique/${cliqueID}/event/${plan.parent_event}/plan/${plan._id}/edit`}><button type="button" className="btn btn-info m-3">Edit Plan</button></Link>
                                         )}
-                                    </div>
-                                    <div>
-                                        <button className="btn btn-primary">Button<i className="bi bi-check-square"></i></button>
                                     </div>
                                 </div>
                             ))

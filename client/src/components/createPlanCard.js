@@ -60,46 +60,42 @@ function CreatePlanCard(props) {
     }
 
     return (
-        <div className="card card-header m-3">
-            <div>
+        <div className="card d-flex w-auto h-75 m-5">
+            <div className="card-header">
                 <h4 className="card-title">Create new plan</h4>
             </div>
-            <div className="container">
-                <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmission}>
-                    <div className="form-group row m-2 justify-content-around">
-                        <div>
-                            <label className="col-sm-2 col-form-label">Plan Name</label>
-                            <div className="col-sm-10">
-                                <input
-                                    className="form-control"
-                                    placeholder="Plan Name"
-                                    name="plan_name"
-                                    type="text"
-                                    value={planFormState.plan_name}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
+            <div className="m-3">
+                <form onSubmit={handleFormSubmission}>
                     <div className="form-group row m-2">
                         <div>
-                            <label className="col-sm-2 col-form-label">About this plan</label>
-                            <div className="col-sm-10">
-                                <input
-                                    className="form-control"
-                                    placeholder="Description"
-                                    name="plan_about"
-                                    type="text"
-                                    value={planFormState.plan_about}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <label>Plan Name</label>
+                            <input
+                                className="form-control"
+                                placeholder="Plan Name"
+                                name="plan_name"
+                                type="text"
+                                value={planFormState.plan_name}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="form-group m-2">
+                        <div>
+                            <label>About this plan</label>
+                            <input
+                                className="form-control"
+                                placeholder="Description"
+                                name="plan_about"
+                                type="text"
+                                value={planFormState.plan_about}
+                                onChange={handleChange}
+                            />
                         </div>
                     </div>
 
 
-                    <div className="form-group row m-2 mt-3">
+                    <div className="form-group row m-2 mt-3 justify-content-center">
                         <div className="col-sm-10">
                             <button type="submit" className="btn btn-primary">Create Plan</button>
                         </div>

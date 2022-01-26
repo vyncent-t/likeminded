@@ -59,6 +59,8 @@ function PlanPage() {
     const eventID = params.eventID
     const planID = params.planID
 
+    console.log("plan id read " + planID)
+
     // take the key from props._id for the clique id and then useQuery for findCliqueById
 
 
@@ -98,14 +100,16 @@ function PlanPage() {
 
 
     return (
-        <Fragment>
+        <div>
             <Navbar />
-            <div>
-                <h1>{`Plan info - reader ${Auth.getUser().data.username}`}</h1>
-                <div>{`welcome id user ${currentUserID}`}</div>
-                <Link to={`/clique/${cliqueID}/event/${eventID}`}><button type="button" className="btn btn-info m-3">Back to event</button></Link>
-            </div>
 
+            <div>
+                <div>{`welcome id user ${currentUserID} ${Auth.getUser().data.username}`}</div>
+                <h1>{`Plan`}</h1>
+                <div>
+                    <Link to={`/clique/${cliqueID}/event/${eventID}`}><button type="button" className="btn btn-info m-3">Back to event</button></Link>
+                </div>
+            </div>
 
 
             <div className="container">
@@ -161,7 +165,7 @@ function PlanPage() {
                         </div>)}
                 </div>
             </div>
-        </Fragment>
+        </div>
     )
 }
 

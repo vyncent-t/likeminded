@@ -124,7 +124,6 @@ function CliquePage() {
                 <div>
                     <div>{`welcome id user ${currentUserID}  ${Auth.getUser().data.username}`}</div>
                     <h1>{`Clique`}</h1>
-                    <h2></h2>
                     <div>
                         <button className="btn btn-primary m-3" onClick={toggleInviteModal}>Invite</button>
                         {!leaveModalOpen ? (<span>
@@ -196,11 +195,8 @@ function CliquePage() {
                                     <div>
                                         <InviteCard CliqueID={data.findCliqueById._id} />
                                     </div>}
-
-
                             </div>)}
                     </div>
-
                 </div>
             </div>
 
