@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useQuery, useMutation } from '@apollo/client';
 import { FIND_EVENT } from '../utils/queries';
 import { DELETE_EVENT } from "../utils/mutations"
+import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar"
 import EventCard from "../components/eventCard"
@@ -99,8 +100,14 @@ function EventPage() {
     return (
         <Fragment>
             <Navbar />
-            <h1>{`Event info - reader ${Auth.getUser().data.username}`}</h1>
-            <div>{`welcome id user ${currentUserID}`}</div>
+            <div>
+                <h1>{`Event info - reader ${Auth.getUser().data.username}`}</h1>
+                <div>{`welcome id user ${currentUserID}`}</div>
+                <Link to={`/clique/${cliqueID}`}><button type="button" className="btn btn-info m-3">Back to clique</button></Link>
+            </div>
+
+
+
             <div className="container">
                 <div className="container justify-content-evenly">
                     {loading ? (<div>loading..</div>) :
