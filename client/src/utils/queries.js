@@ -90,6 +90,32 @@ export const FIND_EVENT = gql`
 `
 
 
+export const FIND_PLANS = gql`
+    query findAllEventPlans($id: ID!) {
+        findAllEventPlans(id: $id) {
+            _id
+            plan_name
+            plan_about
+            plan_author
+            parent_event
+        }
+    }
+`
+
+export const FIND_PLAN = gql`
+    query findPlanById($id: ID!) {
+        findPlanById(id: $id) {
+            _id
+            plan_name
+            plan_about
+            plan_author 
+            parent_event
+        }
+    }
+`
+
+
+
 
 
 // export const FIND_ALL_CLIQUES = gql`

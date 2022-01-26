@@ -143,3 +143,49 @@ export const EDIT_EVENT_ABOUT = gql`
     }
 }
 `
+
+
+
+export const CREATE_NEW_PLAN = gql`
+    mutation createNewPlan($plan_author: ID!, $parent_event: ID!, $plan_name: String!, $plan_about: String!) {
+        createNewPlan(plan_author: $plan_author,parent_event: $parent_event, plan_name: $plan_name, plan_about: $plan_about) {
+            _id
+            plan_name
+            plan_about
+            plan_author
+            parent_event
+        }
+    }
+`
+
+
+export const DELETE_PLAN = gql`
+
+    mutation deletePlanById($id: ID!) {
+    deletePlanById(id: $id) {
+        plan_name
+    }
+    }
+`
+
+
+
+export const EDIT_PLAN_NAME = gql`
+    mutation updatePlanName($id: ID!, $plan_name: String!) {
+    updatePlanName(id: $id, plan_name: $plan_name) {
+        _id
+        plan_name
+        plan_about
+    }
+}
+`
+
+export const EDIT_PLAN_ABOUT = gql`
+    mutation updatePlanAbout($id: ID!, $plan_about: String!) {
+    updatePlanAbout(id: $id, plan_about: $plan_about) {
+        _id
+        plan_name
+        plan_about
+    }
+}
+`

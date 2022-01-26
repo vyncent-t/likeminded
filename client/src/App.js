@@ -13,6 +13,7 @@ import CreateLogInPage from './pages/createLogInPage';
 import Dashboard from './pages/dashboard';
 import CliquePage from './pages/cliquePage'
 import EventPage from './pages/eventPage'
+import PlanPage from './pages/planPage'
 
 
 
@@ -53,6 +54,8 @@ function App() {
         <Route path="/clique/:cliqueID/:edit" element={<CliquePage />} />
         <Route path="/clique/:cliqueID/event/:eventID" element={<EventPage />} />
         <Route path="/clique/:cliqueID/event/:eventID/:edit" element={<EventPage />} />
+        <Route path="/clique/:cliqueID/event/:eventID/plan/:planID" element={<PlanPage />} />
+        <Route path="/clique/:cliqueID/event/:eventID/plan/:planID/:edit" element={<PlanPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<Navigate replace to="/" />} />
