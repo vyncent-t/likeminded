@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -12,6 +12,7 @@ import LandingPage from './pages/landingpage'
 import CreateLogInPage from './pages/createLogInPage';
 import Dashboard from './pages/dashboard';
 import CliquePage from './pages/cliquePage'
+import EventPage from './pages/eventPage'
 
 
 
@@ -50,6 +51,8 @@ function App() {
         <Route path="/clique" element={<CliquePage />} />
         <Route path="/clique/:cliqueID" element={<CliquePage />} />
         <Route path="/clique/:cliqueID/:edit" element={<CliquePage />} />
+        <Route path="/clique/:cliqueID/event/:eventID" element={<EventPage />} />
+        <Route path="/clique/:cliqueID/event/:eventID/:edit" element={<EventPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<Navigate replace to="/" />} />

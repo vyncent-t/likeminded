@@ -7,7 +7,7 @@ import { useMutation } from "@apollo/client"
 import Auth from "../utils/auth"
 import { CREATE_NEW_EVENT } from "../utils/mutations";
 // import { ADD_NEW_MEMBER } from "../utils/mutations";
-import { ADD_NEW_AUTHOR } from "../utils/mutations"
+// import { ADD_NEW_AUTHOR } from "../utils/mutations"
 
 
 function CreateEventCard(props) {

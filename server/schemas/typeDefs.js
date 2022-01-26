@@ -30,7 +30,7 @@ const typeDefs = gql`
     type Event {
         _id: ID
         event_author: ID
-        parent_clique: Clique
+        parent_clique: ID
         event_name: String
         event_about: String
         event_plans: [Plan]
@@ -40,7 +40,7 @@ const typeDefs = gql`
     type Plan {
         _id: ID
         plan_author: ID
-        parent_event: Event
+        parent_event: ID
         plan_name: String
         total_votes: Int
         favored_by: [User]
@@ -50,9 +50,7 @@ const typeDefs = gql`
     type Comment {
         _id: ID
         comment_author: ID
-        plan_context: Plan
-        event_context: Event
-        comment_body: String
+        parent_context: ID
     }
     type Query {
         thisUser: User
@@ -93,12 +91,12 @@ const typeDefs = gql`
         updateCliqueAbout(id: ID!, clique_about: String!): Clique
         deleteCliqueById(id: ID!): Clique
         createNewEvent(event_author: ID!, parent_clique: ID!, event_name: String!, event_about: String!): Event
-        updateEventName(id: ID!, eventName: String!): Event
-        updateEventAbout(id: ID!, eventAbout: String!): Event
+        updateEventName(id: ID!, event_name: String!): Event
+        updateEventAbout(id: ID!, event_about: String!): Event
         deleteEventById(id: ID!): Event
         createNewPlan(plan_author: ID!, parent_event: ID!, plan_name: String!, plan_about: String!): Plan
-        updatePlanName(id: ID!, planName: String!): Plan
-        updatePlanAbout(id: ID!, planAbout: String!): Plan
+        updatePlanName(id: ID!, plan_name: String!): Plan
+        updatePlanAbout(id: ID!, plan_about: String!): Plan
         deletePlanById(id: ID!): Plan
         # findAllUsersInFavor(id: ID!): [User]
         createEventComment(comment_author: ID!, event_context: ID!, comment_body: String!): Comment

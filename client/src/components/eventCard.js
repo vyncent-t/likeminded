@@ -47,14 +47,14 @@ function EventCard(props) {
                                     <div className="card-body">
                                         <p>{event.event_about}</p>
                                         <p>event id: {event._id}</p>
-                                        <p>event parent clique id: {event.parent_clique}</p>
+                                        <p>event parent clique ID: {event.parent_clique}</p>
                                         <p>event author id: {event.event_author}</p>
                                         <p>current user id: {currentUserID}</p>
                                     </div>
                                     <div>
-                                        {/* <Link to={`/event/${event._id}`}><button type="button" className="btn btn-primary m-3">View</button></Link> */}
+                                        <Link to={`/clique/${cliqueID}/event/${event._id}`}><button type="button" className="btn btn-primary m-3">View Event</button></Link>
                                         {currentUserID === event.event_author && (
-                                            <Link to={`/event/${event._id}/edit`}><button type="button" className="btn btn-info m-3">Edit</button></Link>
+                                            <Link to={`/clique/${cliqueID}/event/${event._id}/edit`}><button type="button" className="btn btn-info m-3">Edit Event</button></Link>
                                         )}
                                     </div>
                                 </div>

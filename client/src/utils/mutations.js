@@ -37,15 +37,6 @@ export const CREATE_NEW_CLIQUE = gql`
     }
 `
 
-export const DELETE_CLIQUE = gql`
-
-    mutation deleteCliqueById($id: ID!) {
-    deleteCliqueById(id: $id) {
-        clique_name
-    }
-    }
-`
-
 export const ADD_NEW_MEMBER = gql`
     mutation addCliqueMember($id: ID!, $newUser: ID!) {
     addCliqueMember(id: $id, newUser: $newUser) {
@@ -55,6 +46,27 @@ export const ADD_NEW_MEMBER = gql`
     }
 }
 `
+export const REMOVE_MEMBER = gql`
+    mutation removeCliqueMember($id: ID!, $targetUser: ID!) {
+    removeCliqueMember(id: $id, targetUser: $targetUser) {
+        _id
+        clique_name
+        clique_about
+    }
+}
+`
+
+
+export const DELETE_CLIQUE = gql`
+
+    mutation deleteCliqueById($id: ID!) {
+    deleteCliqueById(id: $id) {
+        clique_name
+    }
+    }
+`
+
+
 
 export const EDIT_CLIQUE_NAME = gql`
     mutation updateCliqueName($id: ID!, $clique_name: String!) {
@@ -98,4 +110,36 @@ export const CREATE_NEW_EVENT = gql`
             event_author
         }
     }
+`
+
+
+export const DELETE_EVENT = gql`
+
+    mutation deleteEventById($id: ID!) {
+    deleteEventById(id: $id) {
+        event_name
+    }
+    }
+`
+
+
+
+export const EDIT_EVENT_NAME = gql`
+    mutation updateEventName($id: ID!, $event_name: String!) {
+    updateEventName(id: $id, event_name: $event_name) {
+        _id
+        event_name
+        event_about
+    }
+}
+`
+
+export const EDIT_EVENT_ABOUT = gql`
+    mutation updateEventAbout($id: ID!, $event_about: String!) {
+    updateEventAbout(id: $id, event_about: $event_about) {
+        _id
+        event_name
+        event_about
+    }
+}
 `

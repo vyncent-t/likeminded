@@ -5,16 +5,16 @@ import { useMutation } from "@apollo/client"
 
 
 import Auth from "../utils/auth"
-import { EDIT_CLIQUE_NAME } from "../utils/mutations";
-import { EDIT_CLIQUE_ABOUT } from "../utils/mutations";
+import { EDIT_EVENT_NAME } from "../utils/mutations";
+import { EDIT_EVENT_ABOUT } from "../utils/mutations";
 
 
-function EditCliqueCard(props) {
+function EditEventCard(props) {
 
     const userID = Auth.getUser().data._id
 
-    const [updateCliqueName, { errorName, dataCliqueName }] = useMutation(EDIT_CLIQUE_NAME)
-    const [updateCliqueAbout, { errorAbout, dataCliqueAbout }] = useMutation(EDIT_CLIQUE_ABOUT)
+    const [updateEventName, { errorName, dataEventName }] = useMutation(EDIT_EVENT_NAME)
+    const [updateEventAbout, { errorAbout, dataEventAbout }] = useMutation(EDIT_EVENT_ABOUT)
 
 
     const [confirmModalOpen, toggleConfirmModalOpen] = useState(false)
@@ -28,16 +28,19 @@ function EditCliqueCard(props) {
     const cliqueID = props.editCliqueID
     console.log(`ready edits for clique ID ${cliqueID}`)
 
-    const cliqueName = props.editCliqueName
-    console.log(`ready edits for clique Name ${cliqueName}`)
+    const eventID = props.editEventID
+    console.log(`ready edits for event ID ${eventID}`)
 
-    const cliqueAbout = props.editCliqueAbout
-    console.log(`ready edits for clique About ${cliqueAbout}`)
+    const eventName = props.editEventName
+    console.log(`ready edits for event Name ${eventName}`)
+
+    const eventAbout = props.editEventAbout
+    console.log(`ready edits for event About ${eventAbout}`)
 
 
 
 
-    const [formState, setFormState] = useState({ id: cliqueID, clique_name: props.cliqueName, clique_about: props.cliqueAbout })
+    const [formState, setFormState] = useState({ id: eventID, event_name: props.eventName, event_about: props.eventAbout })
 
 
 
@@ -50,6 +53,8 @@ function EditCliqueCard(props) {
             ...formState,
             [name]: value
         })
+
+        console.log(formState.event_name)
     }
 
 
@@ -70,14 +75,14 @@ function EditCliqueCard(props) {
         event.preventDefault();
 
         try {
-            const { data } = await updateCliqueName({
-                variables: { id: cliqueID, clique_name: formState.clique_name },
+            const { data } = await updateEventName({
+                variables: { id: eventID, event_name: formState.event_name },
             })
 
             console.log(data)
-            console.log(dataCliqueName)
-            console.log(`user declared clique name: ${formState.clique_name}`)
-            console.log(`run edits for clique name`)
+            console.log(dataEventName)
+            console.log(`user declared event name: ${formState.event_name}`)
+            console.log(`run edits for event name`)
         } catch (e) {
             console.error(e)
         }
@@ -85,43 +90,39 @@ function EditCliqueCard(props) {
 
 
         try {
-            const { data } = await updateCliqueAbout({
-                variables: { id: cliqueID, clique_about: formState.clique_about },
+            const { data } = await updateEventAbout({
+                variables: { id: eventID, event_about: formState.event_about },
             })
 
             console.log(data)
-            console.log(dataCliqueAbout)
-            console.log(`user declared clique about: ${formState.clique_about}`)
-            console.log(`run edits for clique about`)
+            console.log(dataEventAbout)
+            console.log(`user declared event about: ${formState.event_about}`)
+            console.log(`run edits for event about`)
         } catch (e) {
             console.error(e)
         }
 
-        console.log(formState.clique_name)
-        console.log(formState.clique_about)
 
-
-
-        window.location.replace(`/clique/${cliqueID}/edit`);
+        window.location.replace(`/clique/${cliqueID}/event/${eventID}/edit`);
     }
 
     return (
         <div className="card card-header m-3">
             <div>
-                <h4 className="card-title">Edit clique</h4>
+                <h4 className="card-title">Edit event</h4>
             </div>
             <div className="container">
                 <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmission}>
                     <div className="form-group row m-2 justify-content-around">
                         <div>
-                            <label className="col-sm-2 col-form-label">Clique Name</label>
+                            <label className="col-sm-2 col-form-label">Event Name</label>
                             <div className="col-sm-10">
                                 <input
                                     className="form-control"
-                                    placeholder="Clique Name"
-                                    name="clique_name"
+                                    placeholder="Event Name"
+                                    name="event_name"
                                     type="text"
-                                    value={formState.clique_name}
+                                    value={formState.event_name}
                                     onChange={handleNameChange}
                                 />
                             </div>
@@ -130,14 +131,14 @@ function EditCliqueCard(props) {
 
                     <div className="form-group row m-2">
                         <div>
-                            <label className="col-sm-2 col-form-label">About this clique</label>
+                            <label className="col-sm-2 col-form-label">About this event</label>
                             <div className="col-sm-10">
                                 <input
                                     className="form-control"
                                     placeholder="Description"
-                                    name="clique_about"
+                                    name="event_about"
                                     type="text"
-                                    value={formState.clique_about}
+                                    value={formState.event_about}
                                     onChange={handleAboutChange}
                                 />
                             </div>
@@ -148,7 +149,7 @@ function EditCliqueCard(props) {
                     <div>
                         {!confirmModalOpen ? (<button className="btn btn-info m-3" onClick={toggleConfirmModal}>Update</button>) : (<div>
                             <p>Are you sure you want to update these changes?</p>
-                            <button type="button" className="btn btn-info m-3" onClick={handleFormSubmission}>Update clique</button>
+                            <button type="button" className="btn btn-info m-3" onClick={handleFormSubmission}>Update event</button>
                             <button type="button" className="btn m-3" onClick={toggleConfirmModal}>Cancel</button>
                         </div>)}
                     </div>
@@ -169,4 +170,4 @@ function EditCliqueCard(props) {
     )
 }
 
-export default EditCliqueCard
+export default EditEventCard

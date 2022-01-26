@@ -186,11 +186,11 @@ const resolvers = {
         },
         // update the name of the event by id
         updateEventName: async (parent, args) => {
-            return await Event.findOneAndUpdate({ _id: args.id }, { event_name: args.eventName }, { new: true })
+            return await Event.findOneAndUpdate({ _id: args.id }, { event_name: args.event_name }, { new: true })
         },
         // update the about of the event by id
         updateEventAbout: async (parent, args) => {
-            return await Event.findOneAndUpdate({ _id: args.id }, { event_about: args.eventAbout }, { new: true })
+            return await Event.findOneAndUpdate({ _id: args.id }, { event_about: args.event_about }, { new: true })
         },
         // delete event by id
         deleteEventById: async (parent, { id }) => {
@@ -205,11 +205,11 @@ const resolvers = {
         },
         // update the name of the plan by id
         updatePlanName: async (parent, args) => {
-            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_name: args.planName }, { new: true })
+            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_name: args.plan_name }, { new: true })
         },
         // update the about of the plan by id
         updatePlanAbout: async (parent, args) => {
-            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_about: args.planAbout }, { new: true })
+            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_about: args.plan_about }, { new: true })
         },
         // delete plan by id
         deletePlanById: async (parent, args) => {

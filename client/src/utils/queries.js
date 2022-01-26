@@ -20,6 +20,18 @@ export const FIND_ALL_EMAILS = gql`
     }
 `;
 
+
+export const FIND_USERNAME = gql`
+    query findUserByUsername($username: String!) {
+        findUserByUsername(username: $username) {
+            _id
+            username
+            email
+        }
+    }
+`
+
+
 export const FIND_USERS_CLIQUES = gql`
     query findUserCliqueMemberOf($id: ID!) {
         findUserCliqueMemberOf(id: $id) {
@@ -53,18 +65,6 @@ export const FIND_CLIQUE = gql`
     }
 `
 
-
-export const FIND_USERNAME = gql`
-    query findUserByUsername($username: String!) {
-        findUserByUsername(username: $username) {
-            _id
-            username
-            email
-        }
-    }
-`
-
-
 export const FIND_EVENTS = gql`
     query findAllCliqueEvents($id: ID!) {
         findAllCliqueEvents(id: $id) {
@@ -72,9 +72,25 @@ export const FIND_EVENTS = gql`
             event_name
             event_about
             event_author
+            parent_clique
         }
     }
 `
+
+export const FIND_EVENT = gql`
+    query findEventById($id: ID!) {
+        findEventById(id: $id) {
+            _id
+            event_name
+            event_about
+            event_author 
+            parent_clique
+        }
+    }
+`
+
+
+
 
 // export const FIND_ALL_CLIQUES = gql`
 //     query findAllCliques {
