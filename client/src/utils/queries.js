@@ -110,9 +110,24 @@ export const FIND_PLAN = gql`
             plan_about
             plan_author 
             parent_event
+            favored_by
         }
     }
 `
+
+
+
+
+// export const FIND_VOTES = gql`
+//     query findPlanById($id: ID!) {
+//         findPlanById(id: $id) {
+//             _id
+//             plan_name
+//             favored_by
+//         }
+//     }
+// `
+
 
 
 

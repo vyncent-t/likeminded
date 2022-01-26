@@ -1,4 +1,6 @@
+import { Fragment } from "react"
 import { Link } from "react-router-dom"
+import CreateCliqueCard from "./createCliqueCard"
 
 function CliqueCard(props) {
 
@@ -15,9 +17,9 @@ function CliqueCard(props) {
     console.log("Cliques reached" + cliques)
 
     return (
-        <div>
-            <h3>Cliques</h3>
-            <div className="containter d-flex ">
+        <Fragment >
+            <div className="d-flex flex-wrap justify-content-center">
+                <CreateCliqueCard />
                 {cliques &&
                     cliques.map((clique) => (
                         <div className="card bg-light mb-3 m-4" key={clique._id}>
@@ -38,7 +40,7 @@ function CliqueCard(props) {
                         </div>
                     ))}
             </div>
-        </div >
+        </Fragment >
     )
 }
 

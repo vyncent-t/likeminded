@@ -118,90 +118,104 @@ function CliquePage() {
 
 
     return (
-        <Fragment>
+        <div>
             <Navbar />
             <div className="container m-3 d-flex">
                 <div>
-                    <h1>{`Clique info - Welcome ${Auth.getUser().data.username}`}</h1>
-                </div>
-                <button className="btn btn-primary m-3" onClick={toggleInviteModal}>Invite</button>
-                <div>{`welcome id user ${currentUserID}`}</div>
-                {!leaveModalOpen ? (<div>
-                    <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Leave Clique</button>
-                </div>) : (
+                    <div>{`welcome id user ${currentUserID}  ${Auth.getUser().data.username}`}</div>
+                    <h1>{`Clique`}</h1>
+                    <h2></h2>
                     <div>
-                        <p>Are you sure you want to leave this clique?</p>
-                        <button className="btn btn-danger m-3" onClick={userLeaveClique}>Leave</button>
-                        <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Cancel</button>
+                        <button className="btn btn-primary m-3" onClick={toggleInviteModal}>Invite</button>
+                        {!leaveModalOpen ? (<span>
+                            <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Leave Clique</button>
+                        </span>) : (
+                            <span>
+                                <p>Are you sure you want to leave this clique?</p>
+                                <button className="btn btn-danger m-3" onClick={userLeaveClique}>Leave</button>
+                                <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Cancel</button>
+                            </span>
+                        )}
                     </div>
-                )}
-            </div>
-            <div className="container">
-                <div className="container justify-content-evenly">
-                    {loading ? (<div>loading..</div>) :
-                        (<div>
-                            {data &&
-                                (<div className="card bg-light mb-3">
-                                    <div className="card-header container d-flex justify-content-between">
-                                        <h4 className="card-title">{data.findCliqueById.clique_name}</h4>
-                                        {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") && (
-                                            <div>
-                                                <button className="btn btn-primary" onClick={toggleInviteModal}>invite</button>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="card-body">
-                                        <p>{data.findCliqueById.clique_about}</p>
-                                        <p>clique id: {data.findCliqueById._id}</p>
-                                        <p>clique author id: {data.findCliqueById.clique_author}</p>
-                                        <p>current user id: {currentUserID}</p>
-                                    </div>
-
-
-                                    <div className="container">
-
-                                        {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") ? (
-                                            <div className="container d-flex justify-content-end">
+                </div>
+                <div className="container">
+                    <div className="container justify-content-evenly">
+                        {loading ? (<div>loading..</div>) :
+                            (<div>
+                                {data &&
+                                    (<div className="card bg-light mb-3">
+                                        <div className="card-header container d-flex justify-content-between">
+                                            <h4 className="card-title">{data.findCliqueById.clique_name}</h4>
+                                            {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") && (
                                                 <div>
-                                                    {!deleteModalOpen ? (<button className="btn btn-danger m-3" onClick={toggleDeleteModal}>Delete</button>) : (<div>
-                                                        <p>Are you sure you want to delete?</p>
-                                                        <button type="button" className="btn btn-danger m-3" value={data.findCliqueById._id} onClick={deleteChosenClique}>Delete clique</button>
-                                                        <button type="button" className="btn m-3" onClick={toggleDeleteModal}>Cancel</button>
-                                                    </div>)}
+                                                    <button className="btn btn-primary" onClick={toggleInviteModal}>invite</button>
                                                 </div>
+                                            )}
+                                        </div>
+                                        <div className="card-body">
+                                            <p>{data.findCliqueById.clique_about}</p>
+                                            <p>clique id: {data.findCliqueById._id}</p>
+                                            <p>clique author id: {data.findCliqueById.clique_author}</p>
+                                            <p>current user id: {currentUserID}</p>
+                                        </div>
+
+
+                                        <div className="container">
+
+                                            {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") ? (
+                                                <div className="container d-flex justify-content-end">
+                                                    <div>
+                                                        {!deleteModalOpen ? (<button className="btn btn-danger m-3" onClick={toggleDeleteModal}>Delete</button>) : (<div>
+                                                            <p>Are you sure you want to delete?</p>
+                                                            <button type="button" className="btn btn-danger m-3" value={data.findCliqueById._id} onClick={deleteChosenClique}>Delete clique</button>
+                                                            <button type="button" className="btn m-3" onClick={toggleDeleteModal}>Cancel</button>
+                                                        </div>)}
+                                                    </div>
+                                                    <div>
+                                                        <button className="btn btn-info m-3" onClick={toggleUpdateModal}>Edit</button>
+                                                    </div>
+                                                </div>
+                                            ) : (
                                                 <div>
-                                                    <button className="btn btn-info m-3" onClick={toggleUpdateModal}>Edit</button>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <div>
-                                                <div>Click...</div>
-                                            </div>)}
-                                    </div>
-                                </div>)
-                            }
-                            {updateModalOpen && <div>
-                                <EditCliqueCard editCliqueID={data.findCliqueById._id}
-                                    editCliqueName={data.findCliqueById.clique_name}
-                                    editCliqueAbout={data.findCliqueById.clique_about}
-                                />
-                            </div>}
+                                                    <div>Click...</div>
+                                                </div>)}
+                                        </div>
+                                    </div>)
+                                }
 
 
-                            {inviteModalOpen &&
-                                <div>
-                                    <InviteCard CliqueID={data.findCliqueById._id} />
+                                {updateModalOpen && <div>
+                                    <EditCliqueCard editCliqueID={data.findCliqueById._id}
+                                        editCliqueName={data.findCliqueById.clique_name}
+                                        editCliqueAbout={data.findCliqueById.clique_about}
+                                    />
                                 </div>}
 
 
-                        </div>)}
+                                {inviteModalOpen &&
+                                    <div>
+                                        <InviteCard CliqueID={data.findCliqueById._id} />
+                                    </div>}
+
+
+                            </div>)}
+                    </div>
+
                 </div>
-                <div className="container-fluid d-flex" >
-                    <EventCard currentUserID={currentUserID} />
-                </div>
-                <CreateEventCard currentUserID={currentUserID} currentCliqueID={cliqueID} />
             </div>
-        </Fragment>
+
+            <div className="mx-4">
+                <h2>Events</h2>
+                <div className="mx-3 d-flex flex-wrap flex-row">
+                    <div className="d-flex justify-content-center" >
+                        <CreateEventCard currentUserID={currentUserID} currentCliqueID={cliqueID} />
+                        <EventCard currentUserID={currentUserID} />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
     )
 }
 

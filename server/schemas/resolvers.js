@@ -215,6 +215,15 @@ const resolvers = {
         deletePlanById: async (parent, args) => {
             return await Plan.findByIdAndDelete(args.id)
         },
+        // voting
+        voteOnPlan: async (parent, { id, targetUser }) => {
+            return await Plan.findOneAndUpdate({ _id: id }, { $addToSet: { favored_by: targetUser } })
+        },
+
+        unvoteOnPlan: async (parent, { id, targetUser }) => {
+            return await Plan.findOneAndUpdate({ _id: id }, { $pull: { favored_by: targetUser } })
+        },
+
 
         /*----------------------------------------------------------------- COMMENT MUTATION ------------------------------------*/
         // create new event comment

@@ -1,4 +1,3 @@
-import { Fragment } from "react"
 import { useQuery } from '@apollo/client';
 import { FIND_USERS_CLIQUES } from '../utils/queries';
 import Navbar from "../components/Navbar"
@@ -25,17 +24,18 @@ function Dashboard() {
     const cliques = data?.findUserCliqueMemberOf || []
 
     return (
-        <Fragment>
+        <div>
             <Navbar />
             <h1>{`welcome ${Auth.getUser().data.username}`}</h1>
             <div>{`welcome ${userID}`}</div>
-            <div >
-                <div className="container justify-content-center">
-                    {loading ? (<div>loading..</div>) : (<CliqueCard cliques={cliques} currentUserID={userID} />)}
-                    <CreateCliqueCard />
-                </div>
+            <div><h3>Cliques</h3></div>
+            <div>
+                {loading ? (<div>loading..</div>) : (
+                    <div className="d-flex justify-content-center mx-5">
+                        <CliqueCard cliques={cliques} currentUserID={userID} />
+                    </div>)}
             </div>
-        </Fragment>
+        </div>
     )
 }
 

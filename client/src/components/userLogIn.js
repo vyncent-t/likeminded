@@ -87,7 +87,7 @@ function UserLogIn() {
 
                                         <div className="form-group row m-2">
                                             <div>
-                                                <label className="col-sm-2 col-form-label">Username</label>
+                                                <label className="col-sm-2 col-form-label">Password</label>
                                                 <div className="col-sm-10">
                                                     <input
                                                         className="form-control"

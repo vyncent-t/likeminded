@@ -58,6 +58,9 @@ function PlanCard(props) {
                                             <Link to={`/clique/${cliqueID}/event/${plan.parent_event}/plan/${plan._id}/edit`}><button type="button" className="btn btn-info m-3">Edit Plan</button></Link>
                                         )}
                                     </div>
+                                    <div>
+                                        <button className="btn btn-primary">Button<i className="bi bi-check-square"></i></button>
+                                    </div>
                                 </div>
                             ))
                         }

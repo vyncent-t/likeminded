@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { FIND_EVENTS } from '../utils/queries'
 import { useQuery } from "@apollo/client"
 import { useParams } from "react-router-dom"
+import { Fragment } from "react"
 
 function EventCard(props) {
 
@@ -30,9 +31,8 @@ function EventCard(props) {
 
 
     return (
-        <div>
-            <h3>Events -</h3>
-            <div >
+        <Fragment>
+            <div className="d-flex flex-wrap justify-content-center w-auto h-50">
                 {loading && (
                     <div>Loading..</div>
                 )}
@@ -65,7 +65,7 @@ function EventCard(props) {
                     <div>No events yet</div>
                 )}
             </div>
-        </div >
+        </Fragment >
     )
 }
 
