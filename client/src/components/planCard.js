@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { FIND_PLANS } from '../utils/queries'
 import { useQuery } from "@apollo/client"
 import { useParams } from "react-router-dom"
+import { Fragment } from "react"
 
 function PlanCard(props) {
 
@@ -31,9 +32,8 @@ function PlanCard(props) {
 
 
     return (
-        <div>
-            <h3>Plans -</h3>
-            <div >
+        <Fragment>
+            <div className="d-flex flex-wrap justify-content-center w-auto h-50">
                 {loading && (
                     <div>Loading..</div>
                 )}
@@ -69,7 +69,7 @@ function PlanCard(props) {
                     <div>No plans yet</div>
                 )}
             </div>
-        </div >
+        </Fragment >
     )
 }
 

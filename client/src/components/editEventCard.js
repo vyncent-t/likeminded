@@ -107,41 +107,37 @@ function EditEventCard(props) {
     }
 
     return (
-        <div className="card card-header m-3">
-            <div>
+        <div className="card w-auto h-75 m-5">
+            <div className="card-header">
                 <h4 className="card-title">Edit event</h4>
             </div>
-            <div className="container">
-                <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmission}>
-                    <div className="form-group row m-2 justify-content-around">
+            <div className="m-3">
+                <form className="flex-row justify-center" onSubmit={handleFormSubmission}>
+                    <div className="form-group row m-2">
                         <div>
-                            <label className="col-sm-2 col-form-label">Event Name</label>
-                            <div className="col-sm-10">
-                                <input
-                                    className="form-control"
-                                    placeholder="Event Name"
-                                    name="event_name"
-                                    type="text"
-                                    value={formState.event_name}
-                                    onChange={handleNameChange}
-                                />
-                            </div>
+                            <label >Event Name</label>
+                            <input
+                                className="form-control"
+                                placeholder="Event Name"
+                                name="event_name"
+                                type="text"
+                                value={formState.event_name}
+                                onChange={handleNameChange}
+                            />
                         </div>
                     </div>
 
                     <div className="form-group row m-2">
                         <div>
-                            <label className="col-sm-2 col-form-label">About this event</label>
-                            <div className="col-sm-10">
-                                <input
-                                    className="form-control"
-                                    placeholder="Description"
-                                    name="event_about"
-                                    type="text"
-                                    value={formState.event_about}
-                                    onChange={handleAboutChange}
-                                />
-                            </div>
+                            <label >About this event</label>
+                            <input
+                                className="form-control"
+                                placeholder="Description"
+                                name="event_about"
+                                type="text"
+                                value={formState.event_about}
+                                onChange={handleAboutChange}
+                            />
                         </div>
                     </div>
 

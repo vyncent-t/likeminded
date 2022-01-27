@@ -46,7 +46,7 @@ function InviteCard(props) {
                     <div className="container form-group row justify-content-around">
                         <div className="container-fluid">
                             <label className=" col-form-label">Who would you like to add?</label>
-                            <div className=" col-2">
+                            <div>
                                 <input
                                     className="form-control m-2"
                                     placeholder="Enter username here"

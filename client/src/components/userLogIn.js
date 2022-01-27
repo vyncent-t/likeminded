@@ -58,20 +58,20 @@ function UserLogIn() {
                 </div>
             ) :
 
-                <div className="col-md-6 contents bg-success m-3">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8">
-                            <div className="mb-4">
+                <div className="card d-flex w-auto h-75 m-5">
+                    <div>
+                        <div>
+                            <div className="card-header">
                                 <h3>Log in</h3>
-                                <p className="mb-4">Welcome to Likeminded, come connect with your cliques.</p>
                             </div>
 
-                            <div>
+                            <div className="container pb-3">
                                 {data ? (<p> You are already logged in! <Link to="/"> Click to navigate back to the homepage </Link> </p>) : (
-                                    <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmission}>
-                                        <div className="form-group row m-2 justify-content-around">
+                                    <form onSubmit={handleFormSubmission}>
+                                        <div className="form-group m-2">
                                             <div>
-                                                <label className="col-sm-2 col-form-label">Email</label>
+                                                <p className="m-2">Already made an account? Welcome back to Likeminded!</p>
+                                                <label>Email</label>
                                                 <div className="col-sm-10">
                                                     <input
                                                         className="form-control"
@@ -85,9 +85,9 @@ function UserLogIn() {
                                             </div>
                                         </div>
 
-                                        <div className="form-group row m-2">
+                                        <div className="form-group m-2">
                                             <div>
-                                                <label className="col-sm-2 col-form-label">Password</label>
+                                                <label>Password</label>
                                                 <div className="col-sm-10">
                                                     <input
                                                         className="form-control"
@@ -102,7 +102,7 @@ function UserLogIn() {
                                         </div>
 
 
-                                        <div className="form-group row m-2 mt-3">
+                                        <div className="form-group m-2 mt-3">
                                             <div className="col-sm-10">
                                                 <button type="submit" className="btn btn-primary">Log in</button>
                                             </div>

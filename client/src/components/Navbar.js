@@ -8,8 +8,8 @@ function Navbar() {
         Auth.logout()
     }
     return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div className="font-weight-bold">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-primary d-flex justify-content-between">
                 <div className="container-fluid">
                     <NavLink className="navbar-brand" to="/">Likeminded</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,6 @@ function Navbar() {
                                     <Fragment>
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="/">Home
-                                                <span className="visually-hidden">(current)</span>
                                             </NavLink>
                                         </li>
 

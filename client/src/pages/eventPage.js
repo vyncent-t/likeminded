@@ -100,13 +100,15 @@ function EventPage() {
     return (
         <div>
             <Navbar />
-            <div className="container m-3 d-flex">
-                <div>
-                    <div>{`welcome id user ${currentUserID}`}  ${Auth.getUser().data.username}</div>
+            <div className=" m-3 d-flex">
+                <div className="m-3">
                     <h1>{`Event`}</h1>
                     <div>
-                        <Link to={`/clique/${cliqueID}`}><button type="button" className="btn btn-info m-3">Back to clique</button></Link>
+                        <Link to={`/clique/${cliqueID}`}><button type="button" className="btn btn-info">Back to clique</button></Link>
                     </div>
+                    {/* <div>
+                        <div>{`welcome id user ${currentUserID}`}  ${Auth.getUser().data.username}</div>
+                    </div> */}
                 </div>
 
 

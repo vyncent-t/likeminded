@@ -25,7 +25,6 @@ function CreateLogInPage() {
                     <UserLogIn />
                 </Fragment>}
             </div>
-            <Samplepage />
         </div>
     )
 }

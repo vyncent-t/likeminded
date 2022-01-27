@@ -106,16 +106,16 @@ function EditCliqueCard(props) {
     }
 
     return (
-        <div className="card card-header m-3">
-            <div>
+        <div className="card w-auto h-75 m-5">
+            <div className="card-header">
                 <h4 className="card-title">Edit clique</h4>
             </div>
-            <div className="container">
-                <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmission}>
-                    <div className="form-group row m-2 justify-content-around">
+            <div className="m-3">
+                <form className="flex-row justify-center" onSubmit={handleFormSubmission}>
+                    <div className="form-group row m-2">
                         <div>
-                            <label className="col-sm-2 col-form-label">Clique Name</label>
-                            <div className="col-sm-10">
+                            <label>Clique Name</label>
+                            <div>
                                 <input
                                     className="form-control"
                                     placeholder="Clique Name"
@@ -130,8 +130,8 @@ function EditCliqueCard(props) {
 
                     <div className="form-group row m-2">
                         <div>
-                            <label className="col-sm-2 col-form-label">About this clique</label>
-                            <div className="col-sm-10">
+                            <label>About this clique</label>
+                            <div>
                                 <input
                                     className="form-control"
                                     placeholder="Description"

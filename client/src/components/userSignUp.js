@@ -62,64 +62,66 @@ function UserSignUp() {
 
     return (
         <Fragment>
-            <div className="col-md-6 contents bg-success m-3 card-body">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="mb-4">
+            <div className="card d-flex w-auto h-75 m-5">
+                <div>
+                    <div>
+                        <div className="card-header">
                             <h3>Create Account</h3>
-                            <p className="mb-4">Welcome to Likeminded, come connect with your cliques.</p>
+                        </div>
+                        <div className="container pb-3">
+                            <p className="m-2">Welcome to Likeminded, come connect with your cliques.</p>
+                            <form onSubmit={handleFormSubmit}>
+                                <div className="form-group m-2">
+                                    <div>
+                                        <label>Email</label>
+                                        <div className="col-sm-10">
+                                            <input name="email" type="email" className="form-control" placeholder="Email" value={userInfo.email} onChange={
+
+                                                (e) =>
+                                                    setUserInfo({ ...userInfo, email: e.target.value })
+                                            } />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="form-group m-2">
+                                    <div>
+                                        <label>Username</label>
+                                        <div className="col-sm-10">
+                                            <input name="username" type="text" className="form-control" placeholder="Username" value={userInfo.username} onChange={
+                                                (e) =>
+                                                    setUserInfo({ ...userInfo, username: e.target.value })
+                                            } />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="form-group m-2">
+                                    <div>
+                                        <label>Password</label>
+                                        <div className="col-sm-10">
+                                            <input name="password" type="password" className="form-control" placeholder="Password" value={userInfo.password} onChange={
+                                                (e) =>
+                                                    setUserInfo({ ...userInfo, password: e.target.value })
+                                            } />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="form-group m-2 mt-3">
+                                    <div className="col-sm-10">
+                                        <button type="submit" className="btn btn-primary">Create Account</button>
+                                    </div>
+
+                                    {error && (
+                                        <div className="col-12 my-3 bg-danger text-white p-3">
+                                            Something went wrong...
+                                        </div>
+                                    )}
+                                </div>
+                            </form>
                         </div>
 
-                        <form className="flex-row justify-center justify-space-between-md" onSubmit={handleFormSubmit}>
-                            <div className="form-group row m-2 justify-content-around">
-                                <div>
-                                    <label className="col-sm-2 col-form-label">Email</label>
-                                    <div className="col-sm-10">
-                                        <input name="email" type="email" className="form-control" placeholder="Email" value={userInfo.email} onChange={
-
-                                            (e) =>
-                                                setUserInfo({ ...userInfo, email: e.target.value })
-                                        } />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form-group row m-2">
-                                <div>
-                                    <label className="col-sm-2 col-form-label">Username</label>
-                                    <div className="col-sm-10">
-                                        <input name="username" type="text" className="form-control" placeholder="Username" value={userInfo.username} onChange={
-                                            (e) =>
-                                                setUserInfo({ ...userInfo, username: e.target.value })
-                                        } />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form-group row m-2">
-                                <div>
-                                    <label className="col-sm-2 col-form-label">Password</label>
-                                    <div className="col-sm-10">
-                                        <input name="password" type="password" className="form-control" placeholder="Password" value={userInfo.password} onChange={
-                                            (e) =>
-                                                setUserInfo({ ...userInfo, password: e.target.value })
-                                        } />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form-group row m-2 mt-3">
-                                <div className="col-sm-10">
-                                    <button type="submit" className="btn btn-primary">Create Account</button>
-                                </div>
-
-                                {error && (
-                                    <div className="col-12 my-3 bg-danger text-white p-3">
-                                        Something went wrong...
-                                    </div>
-                                )}
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

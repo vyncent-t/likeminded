@@ -78,8 +78,6 @@ function LandingPage() {
                     </div>
                 </div>
             </section>
-
-            <Samplepage />
         </Fragment>
     )
 

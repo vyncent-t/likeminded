@@ -1,6 +1,7 @@
 import { Fragment } from "react"
 import { useState } from "react"
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useQuery, useMutation } from '@apollo/client';
 import { FIND_CLIQUE } from '../utils/queries';
 import { DELETE_CLIQUE, REMOVE_MEMBER } from "../utils/mutations"
@@ -120,22 +121,28 @@ function CliquePage() {
     return (
         <div>
             <Navbar />
-            <div className="container m-3 d-flex">
+            <div className="m-3 d-flex">
                 <div>
-                    <div>{`welcome id user ${currentUserID}  ${Auth.getUser().data.username}`}</div>
                     <h1>{`Clique`}</h1>
                     <div>
-                        <button className="btn btn-primary m-3" onClick={toggleInviteModal}>Invite</button>
-                        {!leaveModalOpen ? (<span>
-                            <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Leave Clique</button>
-                        </span>) : (
-                            <span>
-                                <p>Are you sure you want to leave this clique?</p>
-                                <button className="btn btn-danger m-3" onClick={userLeaveClique}>Leave</button>
-                                <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Cancel</button>
-                            </span>
-                        )}
+                        <div className="d-flex flex-column ">
+                            <div>
+                                <Link to={`/dashboard`}><button type="button" className="btn btn-info">Back to Dashboard</button></Link>
+
+                            </div>
+                            {!leaveModalOpen ? (<span>
+                                <button className="btn btn-secondary mt-3" onClick={toggleLeaveModal}>Leave Clique</button>
+                            </span>) : (
+                                <span>
+                                    <p>Are you sure you want to leave this clique?</p>
+                                    <button className="btn btn-danger m-3" onClick={userLeaveClique}>Leave</button>
+                                    <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Cancel</button>
+                                </span>
+                            )}
+                        </div>
                     </div>
+                    {/* <div>{`welcome id user ${currentUserID}  ${Auth.getUser().data.username}`}</div> */}
+
                 </div>
                 <div className="container">
                     <div className="container justify-content-evenly">
@@ -144,7 +151,7 @@ function CliquePage() {
                                 {data &&
                                     (<div className="card bg-light mb-3">
                                         <div className="card-header container d-flex justify-content-between">
-                                            <h4 className="card-title">{data.findCliqueById.clique_name}</h4>
+                                            <h4 className="card-title">{data.findCliqueById.clique_name} </h4>
                                             {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") && (
                                                 <div>
                                                     <button className="btn btn-primary" onClick={toggleInviteModal}>invite</button>
