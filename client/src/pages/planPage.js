@@ -103,11 +103,13 @@ function PlanPage() {
         <div>
             <Navbar />
 
-            <div>
-                <div>{`welcome id user ${currentUserID} ${Auth.getUser().data.username}`}</div>
-                <h1>{`Plan`}</h1>
-                <div>
-                    <Link to={`/clique/${cliqueID}/event/${eventID}`}><button type="button" className="btn btn-info m-3">Back to event</button></Link>
+            <div className="m-3 d-flex">
+                <div className="m-3">
+                    {/* <div>{`welcome id user ${currentUserID} ${Auth.getUser().data.username}`}</div> */}
+                    <h1>{`Plan`}</h1>
+                    <div>
+                        <Link to={`/clique/${cliqueID}/event/${eventID}`}><button type="button" className="btn btn-info">Back to event</button></Link>
+                    </div>
                 </div>
             </div>
 

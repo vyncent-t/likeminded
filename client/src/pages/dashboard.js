@@ -27,7 +27,7 @@ function Dashboard() {
         <div>
             <Navbar />
             <h1>{`welcome ${Auth.getUser().data.username}`}</h1>
-            <div>{`welcome ${userID}`}</div>
+            {/* <div>{`welcome ${userID}`}</div> */}
             <div><h3>Cliques</h3></div>
             <div>
                 {loading ? (<div>loading..</div>) : (
