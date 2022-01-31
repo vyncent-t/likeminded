@@ -21,10 +21,10 @@ const planSchema = new Schema({
     //     type: Date,
     //     required: true
     // },
-    total_votes: {
-        type: Number,
-        // required: true
-    },
+    // total_votes: {
+    //     type: Number,
+    //     // required: true
+    // },
     favored_by: [{
         type: Schema.Types.ObjectId,
         ref: 'User'

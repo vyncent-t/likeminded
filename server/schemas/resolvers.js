@@ -1,15 +1,27 @@
 const { Clique, Comment, Event, Plan, User } = require('../models/index')
+const { AuthenticationError } = require("apollo-server-express")
+const { signToken } = require('../utils/auth')
 
-// x
+
+
+// run thisUser and make it work
 
 const resolvers = {
     Query: {
-        /*-----USER QUERY----*/
+        /*---------------------------------------------------USER QUERY-------------------------------------------------*/
+        thisUser: async (parent, args, context) => {
+            if (context.user) {
+                return User.findOne({ _id: context.user._id })
+            }
+        },
         findAllUsers: async () => {
             return await User.find({})
         },
         findUserById: async (parent, args) => {
             return await User.findById(args.id)
+        },
+        findUserByUsername: async (parent, args) => {
+            return await User.findOne({ username: args.username })
         },
         // finds all the cliques the user is the author of
         findUserCreatedCliques: async (parent, args) => {
@@ -32,7 +44,7 @@ const resolvers = {
             return await Comment.find({ comment_author: args.id })
         },
 
-        /*----- CLIQUE QUERY -----*/
+        /*---------------------------------------------- CLIQUE QUERY ---------------------------------------------------------*/
         findAllCliques: async () => {
             return await Clique.find({})
         },
@@ -40,9 +52,13 @@ const resolvers = {
         findCliqueById: async (parent, args) => {
             return await Clique.findById(args.id)
         },
+        // narrow serach by author and clique name
+        findCliqueByNarrow: async (parent, args) => {
+            return await Clique.find({ clique_author: args.author_id, clique_name: args.clique_name })
+        },
 
 
-        /*----- EVENT QUERY -----*/
+        /*-------------------------------------------------- EVENT QUERY ------------------------------------------------*/
         findAllEvents: async () => {
             return await Event.find({})
         },
@@ -51,12 +67,12 @@ const resolvers = {
             return await Event.findById(args.id)
         },
         // finds all the events under this Clique
-        findAllCliqueEvents: async (parent, args) => {
-            return await Event.find({ parent_clique: args.id })
+        findAllCliqueEvents: async (parent, { id }) => {
+            return await Event.find({ parent_clique: id })
         },
 
 
-        /*----- PLAN QUERY -----*/
+        /*----------------------------------------------------- PLAN QUERY -------------------------------------------------*/
         findAllPlans: async () => {
             return await Plan.find({})
         },
@@ -70,7 +86,7 @@ const resolvers = {
         },
 
 
-        /*----- COMMENT QUERY -----*/
+        /*----------------------------------------------------- COMMENT QUERY ----------------------------------------------*/
         findAllComments: async () => {
             return await Comment.find({})
         },
@@ -87,26 +103,37 @@ const resolvers = {
             return await Comment.find({ plan_context: args.id })
         },
 
-
-
-        // find all in favor of this plan
-        findAllUsersInFavor: async (parent, args) => {
-            return await plan.find({ id: args.id }, { favored_by })
-        },
-
-        // // finds all the events under this clique
-        // findAllCliqueEvents: async (parent, args) => {
-        //     return await Event.find({ parent_clique: args.id }).populate('User')
-        // },
-
-
     },
 
     Mutation: {
-        /*----- USER MUTATION -----*/
+        /*-------------------------------------------------- USER MUTATION ----------------------------------------------*/
+
+
         createNewUser: async (parent, { username, email, password }) => {
-            return await User.create({ username, email, password })
+            const user = await User.create({ username, email, password });
+            const token = await signToken(user);
+            return { token, user };
         },
+
+        userLogin: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
+
+            if (!user) {
+                throw new AuthenticationError('No user found with this email address');
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('Incorrect credentials');
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
+        },
+
+
         updateUsername: async (parent, args) => {
             return await User.findOneAndUpdate({ _id: args.id }, { username: args.username }, { new: true })
         },
@@ -120,7 +147,7 @@ const resolvers = {
             return await User.findByIdAndDelete(args.id)
         },
 
-        /*----- CLIQUE MUTATION -----*/
+        /*----------------------------------------------------- CLIQUE MUTATION ------------------------------------------------*/
 
         // create new clique
         createNewClique: async (parent, { clique_author, clique_name, clique_about }) => {
@@ -130,24 +157,28 @@ const resolvers = {
         addCliqueMember: async (parent, { id, newUser }) => {
             return await Clique.findByIdAndUpdate({ _id: id }, { $push: { clique_members: newUser } })
         },
+        // add author to member to clique
+        addCliqueAuthor: async (parent, { clique_author, clique_name, newUser }) => {
+            return await Clique.findOneAndUpdate({ clique_author: clique_author, clique_name: clique_name }, { $push: { clique_members: newUser } })
+        },
         // remove member to clique
         removeCliqueMember: async (parent, { id, targetUser }) => {
             return await Clique.findByIdAndUpdate({ _id: id }, { $pull: { clique_members: targetUser } })
         },
         // update the name of the clique by id
         updateCliqueName: async (parent, args) => {
-            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_name: args.cliqueName }, { new: true })
+            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_name: args.clique_name }, { new: true })
         },
         // update the about of the clique by id
         updateCliqueAbout: async (parent, args) => {
-            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_about: args.cliqueAbout }, { new: true })
+            return await Clique.findOneAndUpdate({ _id: args.id }, { clique_about: args.clique_about }, { new: true })
         },
         // delete clique by id
         deleteCliqueById: async (parent, args) => {
             return await Clique.findByIdAndDelete(args.id)
         },
 
-        /*----- EVENT MUTATION -----*/
+        /*-------------------------------------------------------------- EVENT MUTATION ---------------------------------------*/
 
         // create new event
         createNewEvent: async (parent, { event_author, parent_clique, event_name, event_about }) => {
@@ -155,18 +186,18 @@ const resolvers = {
         },
         // update the name of the event by id
         updateEventName: async (parent, args) => {
-            return await Event.findOneAndUpdate({ _id: args.id }, { event_name: args.eventName }, { new: true })
+            return await Event.findOneAndUpdate({ _id: args.id }, { event_name: args.event_name }, { new: true })
         },
         // update the about of the event by id
         updateEventAbout: async (parent, args) => {
-            return await Event.findOneAndUpdate({ _id: args.id }, { event_about: args.eventAbout }, { new: true })
+            return await Event.findOneAndUpdate({ _id: args.id }, { event_about: args.event_about }, { new: true })
         },
         // delete event by id
         deleteEventById: async (parent, { id }) => {
             return await Event.findByIdAndDelete(id)
         },
 
-        /*----- PLAN MUTATION -----*/
+        /*--------------------------------------------------------------------- PLAN MUTATION ------------------------------------------------*/
 
         // create new plan
         createNewPlan: async (parent, { plan_author, parent_event, plan_name, plan_about }) => {
@@ -174,18 +205,27 @@ const resolvers = {
         },
         // update the name of the plan by id
         updatePlanName: async (parent, args) => {
-            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_name: args.planName }, { new: true })
+            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_name: args.plan_name }, { new: true })
         },
         // update the about of the plan by id
         updatePlanAbout: async (parent, args) => {
-            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_about: args.planAbout }, { new: true })
+            return await Plan.findOneAndUpdate({ _id: args.id }, { plan_about: args.plan_about }, { new: true })
         },
         // delete plan by id
         deletePlanById: async (parent, args) => {
             return await Plan.findByIdAndDelete(args.id)
         },
+        // voting
+        voteOnPlan: async (parent, { id, targetUser }) => {
+            return await Plan.findOneAndUpdate({ _id: id }, { $addToSet: { favored_by: targetUser } })
+        },
 
-        /*----- COMMENT MUTATION -----*/
+        unvoteOnPlan: async (parent, { id, targetUser }) => {
+            return await Plan.findOneAndUpdate({ _id: id }, { $pull: { favored_by: targetUser } })
+        },
+
+
+        /*----------------------------------------------------------------- COMMENT MUTATION ------------------------------------*/
         // create new event comment
         createEventComment: async (parent, { comment_author, event_context, comment_body }) => {
             return await Comment.create({ comment_author, event_context, comment_body })
