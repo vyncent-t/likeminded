@@ -28,7 +28,7 @@ function Dashboard() {
             <Navbar />
             <h1>{`welcome ${Auth.getUser().data.username}`}</h1>
             {/* <div>{`welcome ${userID}`}</div> */}
-            <div><h3>Cliques</h3></div>
+            <div><h3>Dashboard</h3></div>
             <div>
                 {loading ? (<div>loading..</div>) : (
                     <div className="d-flex justify-content-center mx-5">
