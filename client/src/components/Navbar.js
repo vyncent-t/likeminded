@@ -31,10 +31,10 @@ function Navbar() {
                                             <NavLink className="nav-link" to="/">Home
                                             </NavLink>
                                         </li>
-
+                                        {/* 
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="/about">About</NavLink>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item">
                                             <NavLink className="nav-link" to="/welcome">Login / Sign up</NavLink>
                                         </li>

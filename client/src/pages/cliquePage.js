@@ -63,6 +63,7 @@ function CliquePage() {
 
 
     const cliqueID = params.cliqueID
+    console.log("current clique id " + cliqueID)
 
     // take the key from props._id for the clique id and then useQuery for findCliqueById
 
@@ -128,26 +129,10 @@ function CliquePage() {
                         <div className="d-flex flex-column ">
                             <div>
                                 <Link to={`/dashboard`}><button type="button" className="btn btn-info">Back to Dashboard</button></Link>
-                                {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") && (
-                                    <div className="d-flex">
-                                        <div>
-                                            <button className="btn btn-primary m-3" onClick={toggleInviteModal}>invite</button>
-                                        </div>
-                                        {!leaveModalOpen ? (<div>
-                                            <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Leave Clique</button>
-                                        </div>) : (
-                                            <div>
-                                                <p>Are you sure you want to leave this clique?</p>
-                                                <button className="btn btn-danger m-3" onClick={userLeaveClique}>Leave</button>
-                                                <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Cancel</button>
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
                             </div>
                         </div>
+                        {/* <div>{`welcome id user ${currentUserID}  ${Auth.getUser().data.username}`}</div> */}
                     </div>
-                    {/* <div>{`welcome id user ${currentUserID}  ${Auth.getUser().data.username}`}</div> */}
 
                 </div>
                 <div className="container">
@@ -169,6 +154,27 @@ function CliquePage() {
 
                                         <div className="container">
 
+
+
+                                            {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") && (
+                                                <div className="d-flex">
+                                                    <div>
+                                                        <button className="btn btn-primary m-3" onClick={toggleInviteModal}>invite</button>
+                                                    </div>
+                                                    {!leaveModalOpen ? (<div>
+                                                        <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Leave Clique</button>
+                                                    </div>) : (
+                                                        <div>
+                                                            <p>Are you sure you want to leave this clique?</p>
+                                                            <button className="btn btn-danger m-3" onClick={userLeaveClique}>Leave</button>
+                                                            <button className="btn btn-secondary m-3" onClick={toggleLeaveModal}>Cancel</button>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+
+
+
                                             {(currentUserID === data.findCliqueById.clique_author) && (params.edit === "edit") ? (
                                                 <div className="container d-flex justify-content-end">
                                                     <div>
@@ -182,6 +188,7 @@ function CliquePage() {
                                                         <button className="btn btn-info m-3" onClick={toggleUpdateModal}>Edit</button>
                                                     </div>
                                                 </div>
+
                                             ) : (
                                                 <div>
                                                     <div>Click...</div>
