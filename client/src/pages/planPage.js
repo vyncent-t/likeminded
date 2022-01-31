@@ -122,6 +122,9 @@ function PlanPage() {
                                 (<div className="card bg-light mb-3">
                                     <div className="card-header container d-flex justify-content-between">
                                         <h4 className="card-title">{data.findPlanById.plan_name}</h4>
+                                        <div>
+                                            <button className="btn btn-primary">Vote<i className="bi bi-check-square m-2"></i></button>
+                                        </div>
                                     </div>
                                     <div className="card-body">
                                         <p>{data.findPlanById.plan_about}</p>
